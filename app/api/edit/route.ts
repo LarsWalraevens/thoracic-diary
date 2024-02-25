@@ -1,6 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 import dayjs from 'dayjs';
+import { catchAdminAuth } from '../posts/route';
 
 // Assuming your request body is an object with these properties
 interface PostRequestBody {
@@ -13,6 +14,8 @@ interface PostRequestBody {
 
 export async function POST(request: NextRequest) {
     try {
+        catchAdminAuth(request);
+
         // Parse the request body as JSON
         const requestBody: PostRequestBody = await request.json();
 
