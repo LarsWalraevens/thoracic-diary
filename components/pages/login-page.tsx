@@ -1,4 +1,3 @@
-import { isLoggedInAtom } from "@/app/page";
 import PageLayout from "@/components/layouts/page-layout";
 import { zodResolver } from "@hookform/resolvers/zod";
 import cookie from "cookie";
@@ -10,6 +9,7 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
+import { isLoggedInAtom } from "@/lib/states";
 
 export default function LoginPage() {
     const [_, setIsLoggedIn] = useAtom(isLoggedInAtom);

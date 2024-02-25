@@ -6,7 +6,7 @@ import { Fragment } from "react";
 import { Badge } from "../ui/badge";
 import { Event } from "../ui/event";
 import { Post, PostProps } from "../ui/post";
-import { isLoggedInAtom } from "@/app/page";
+import { isLoggedInAtom } from "@/lib/states";
 
 export const postsAtom = atom<MyPost[]>([]);
 

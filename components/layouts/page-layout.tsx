@@ -1,8 +1,8 @@
-import { isLoggedInAtom } from "@/app/page";
 import cookie from "cookie";
 import { useAtom } from "jotai";
 import AddPost from "../modals/add-post";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
+import { isLoggedInAtom } from "@/lib/states";
 
 export default function PageLayout(props: {
     children: React.ReactNode;

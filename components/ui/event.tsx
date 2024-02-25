@@ -1,10 +1,10 @@
-import { isLoggedInAtom } from "@/app/page";
 import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import { useAtom } from "jotai";
 import { Edit2, Lock, TimerIcon, Trash2 } from "lucide-react";
 import * as React from "react";
 import { Label } from "./label";
+import { isLoggedInAtom } from "@/lib/states";
 
 export interface EventProps
     extends React.HTMLAttributes<HTMLDivElement> {

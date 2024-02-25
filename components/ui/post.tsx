@@ -4,7 +4,7 @@ import { Edit2, Lock, Trash2 } from "lucide-react";
 import * as React from "react";
 import { Label } from "./label";
 import { useAtom } from "jotai";
-import { isLoggedInAtom } from "@/app/page";
+import { isLoggedInAtom } from "@/lib/states";
 
 export interface PostProps
     extends React.HTMLAttributes<HTMLDivElement> {
