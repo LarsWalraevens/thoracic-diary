@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from "@vercel/postgres";
 
-// export const dynamic = 'force-dynamic' // defaults to auto
 export async function GET(request: NextRequest) {
     try {
         const { rows } = await sql`SELECT * from POSTS ORDER BY id DESC`;
-        return NextResponse.json(rows);
+        return NextResponse.json(rows, { headers: { 'Cache-Control': 'no-store' } });
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
