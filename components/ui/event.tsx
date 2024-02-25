@@ -13,7 +13,7 @@ export interface EventProps
     id: string;
     onDelete: (id: string) => void;
     onEdit: (id: string) => void;
-    isPrivate: boolean;
+    isprivate: boolean;
 }
 
 const Event = React.forwardRef<HTMLDivElement, EventProps>(
@@ -35,7 +35,7 @@ const Event = React.forwardRef<HTMLDivElement, EventProps>(
                     htmlFor="message"
                 >
                     {
-                        props.isPrivate && <Lock size={16} className="mr-2" />
+                        props.isprivate && <Lock size={16} className="mr-2" />
                     }
                     <span>
                         Lars - {dayjs(props.date).format("MMMM DD, YYYY hh:mm A")}

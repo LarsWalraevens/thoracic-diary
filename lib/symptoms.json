@@ -1,14 +1,44 @@
 {
     "symptoms": [
         {
-            "label": "Nek-Schouderpijn",
+            "label": "Nek / schouderpijn",
             "description": "Pain in the neck and shoulder, often radiating to the arm.",
             "value": "pijn"
+        },
+        {
+            "label": "Stijfheid",
+            "description": "Stiffness somewhere in the body.",
+            "value": "stijf"
+        },
+        {
+            "label": "Voos gevoel",
+            "description": "Numby or dirty feeling, described like ants are running through the skin.",
+            "value": "voosheid"
+        },
+        {
+            "label": "Stress",
+            "description": "Feeling of stress",
+            "value": "stress"
         },
         {
             "label": "Tintelingen",
             "description": "Sensation of tingling or 'pins and needles' in the arm or hand.",
             "value": "tintelingen"
+        },
+        {
+            "label": "Prikkelend gevoel",
+            "description": "Pricky feeling, often in the arm.",
+            "value": "prikkels"
+        },
+        {
+            "label": "Steken",
+            "description": "Pierced feeling, mostly in arms or shoulders.",
+            "value": "steken"
+        },
+        {
+            "label": "Brandend gevoel",
+            "description": "Firy feeling, mostly in shoulder or chest.",
+            "value": "branden"
         },
         {
             "label": "Zwakte",
@@ -21,9 +51,9 @@
             "value": "kou"
         },
         {
-            "label": "Zwelling",
-            "description": "Swelling in the hands or fingers, particularly towards the end of the day.",
-            "value": "zwelling"
+            "label": "Zware schouders",
+            "description": "Heavy shoulders, mostly after a long day.",
+            "value": "zware schouders"
         },
         {
             "label": "Coördinatieverlies",
@@ -34,11 +64,6 @@
             "label": "Armvermoeidheid",
             "description": "Quick onset of fatigue in the arm during activities or sustained positions.",
             "value": "vermoeidheid"
-        },
-        {
-            "label": "Blauwachtige Verkleuring",
-            "description": "Bluish tint to the fingers or hands due to reduced blood flow (more severe cases).",
-            "value": "blauwachtige verkleuring"
         }
     ]
 }

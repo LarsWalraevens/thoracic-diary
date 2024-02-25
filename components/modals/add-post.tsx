@@ -28,7 +28,7 @@ export default function AddPost() {
             text: string,
             type: string,
             tags: string,
-            isPrivate: boolean
+            isprivate: boolean
         }) => fetch("/api/add", {
             method: "POST",
             body: JSON.stringify({
@@ -47,7 +47,7 @@ export default function AddPost() {
             text: string,
             type: string,
             tags: string,
-            isPrivate: boolean;
+            isprivate: boolean;
             id: string
         }) => fetch("/api/edit", {
             method: "POST",
@@ -69,7 +69,7 @@ export default function AddPost() {
             text: "",
             type: "post",
             tags: [],
-            isPrivate: false
+            isprivate: false
         },
     });
 
@@ -79,7 +79,7 @@ export default function AddPost() {
                 text: values.text,
                 type: values.type,
                 tags: values.tags.toString(),
-                isPrivate: values.isPrivate,
+                isprivate: values.isprivate,
                 id: searchParams.get("edit")!
             })
         } else {
@@ -87,7 +87,7 @@ export default function AddPost() {
                 text: values.text,
                 type: values.type,
                 tags: values.tags.toString(),
-                isPrivate: values.isPrivate
+                isprivate: values.isprivate
             });
         }
 
@@ -105,7 +105,7 @@ export default function AddPost() {
                 form.setValue("text", selected.text as string);
                 form.setValue("type", selected.type);
                 form.setValue("tags", !selected.tags ? [] : Array.isArray(selected.tags) ? selected.tags : (selected.tags as unknown as string).split(","));
-                form.setValue("isPrivate", selected.isPrivate || false);
+                form.setValue("isprivate", selected.isprivate || false);
                 setIsDialogOpen(true);
             }
         }
@@ -186,7 +186,7 @@ export default function AddPost() {
                                                     {
                                                         symptoms && symptoms.symptoms && symptoms.symptoms.length > 0 ? symptoms.symptoms.map((item: { label: string; value: string, description: string }, i: number) => {
                                                             return <Fragment key={i}>
-                                                                <div className="flex items-center space-x-2 my-2">
+                                                                <div title={item.description} className="flex items-center space-x-2 my-2">
                                                                     <Checkbox
                                                                         defaultChecked={!form.getValues("tags") ? false : form.getValues("tags").includes(item.value as string)}
                                                                         value={item.value}
@@ -223,7 +223,7 @@ export default function AddPost() {
                                 )}
                             />
                             <FormField
-                                name="isPrivate"
+                                name="isprivate"
                                 control={form.control}
                                 render={({ field }) => (
 
@@ -252,5 +252,5 @@ const formSchema = z.object({
     text: z.string().min(1, { message: "Fill this in" }),
     type: z.enum(["post", "event"]),
     tags: z.array(z.string()),
-    isPrivate: z.boolean()
+    isprivate: z.boolean()
 })

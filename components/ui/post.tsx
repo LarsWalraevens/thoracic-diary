@@ -11,7 +11,7 @@ export interface PostProps
     text: string | JSX.Element;
     date: Date;
     id: string;
-    isPrivate: boolean;
+    isprivate: boolean;
     onDelete: (id: string) => void;
     onEdit: (id: string) => void;
 }
@@ -34,7 +34,7 @@ const Post = React.forwardRef<HTMLDivElement, PostProps>(
                     htmlFor="message"
                 >
                     {
-                        props.isPrivate && <Lock size={16} className="mr-2" />
+                        props.isprivate && <Lock size={16} className="mr-2" />
                     }
                     <span>
                         Lars - {dayjs(props.date).format("MMMM DD, YYYY hh:mm A")}

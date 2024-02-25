@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 // Assuming your request body is an object with these properties
 interface PostRequestBody {
     text: string;
-    isPrivate?: boolean;
+    isprivate?: boolean;
     type: string;
     tags: string;
 }
@@ -21,12 +21,12 @@ export async function POST(request: NextRequest) {
         }
 
         // Extract properties from the parsed request body
-        const { text, isPrivate, type, tags } = requestBody;
+        const { text, isprivate, type, tags } = requestBody;
 
         const date = dayjs().format('YYYY-MM-DD HH:mm:ss');
 
         // Use template literals directly
-        const myQuery = sql`INSERT INTO posts (Text, Date, Isprivate, Type, Tags) VALUES (${text}, ${date}, ${isPrivate || false}, ${type}, ${tags})`;
+        const myQuery = sql`INSERT INTO posts (Text, Date, Isprivate, Type, Tags) VALUES (${text}, ${date}, ${isprivate || false}, ${type}, ${tags})`;
 
         // Execute the query
         const res = await myQuery;

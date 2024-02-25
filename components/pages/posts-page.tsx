@@ -48,17 +48,18 @@ export default function PostsPage() {
                     <Skeleton className="h-32 w-full rounded-lg" />
                     <Skeleton className="h-32 w-full rounded-lg" />
                 </div> : isError ? <h1 className="text-center text-xl my-10">Error: Something went wrong trying to fetch the posts</h1> :
-                    posts && posts.length > 0 && isLoggedIn ? posts.map((post, i) => post.isPrivate && isLoggedIn === "user" ? null : <Fragment key={i}>
+                    posts && posts.length > 0 && isLoggedIn ? posts.map((post, i) => post.isprivate && isLoggedIn === "user" ? null : <Fragment key={i}>
                         <div className="mb-5 relative">
                             {
-                                post.type === "event" ? <Event className="mb-2" onEdit={onEdit} onDelete={onDelete} key={i} {...post} /> :
-                                    <Post className="mb-2" onEdit={onEdit} onDelete={onDelete} key={i} {...post} />
+                                post.type === "event" ? <Event className="mb-2" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} /> :
+                                    <Post className="mb-2" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} />
                             }
                             <div className="flex flex-row flex-wrap gap-1">
                                 {
                                     post.tags && (post.tags as unknown as string).split(",").map((tag: string, i: number) => {
                                         const tagData = symptoms.symptoms.filter(symptom => symptom.value === tag).length > 0 ? symptoms.symptoms.filter(symptom => symptom.value === tag)[0] : undefined;
                                         return <Badge
+                                            variant="secondary"
                                             title={(tagData && tagData.description) || undefined}
                                             key={i}>
                                             {tagData?.label.toLowerCase() || tag}
@@ -79,7 +80,7 @@ export default function PostsPage() {
 export interface MyPost extends Omit<PostProps, "onDelete" | "onEdit"> {
     tags: string[];
     type: "post" | "event";
-    isPrivate: boolean;
+    isprivate: boolean;
 }
 
 export const useDeletePost = ({ refetch }: { refetch: () => void }) => useMutation({
