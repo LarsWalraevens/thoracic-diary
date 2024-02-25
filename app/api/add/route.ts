@@ -1,7 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { NextRequest, NextResponse } from 'next/server';
 import dayjs from 'dayjs';
-import { catchAdminAuth } from '../posts/route';
+import { catchAdminAuth } from '@/lib/utils';
 
 // Assuming your request body is an object with these properties
 interface PostRequestBody {
