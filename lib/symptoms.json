@@ -1,0 +1,44 @@
+{
+    "symptoms": [
+        {
+            "label": "Nek-Schouderpijn",
+            "description": "Pain in the neck and shoulder, often radiating to the arm.",
+            "value": "pijn"
+        },
+        {
+            "label": "Tintelingen",
+            "description": "Sensation of tingling or 'pins and needles' in the arm or hand.",
+            "value": "tintelingen"
+        },
+        {
+            "label": "Zwakte",
+            "description": "Muscle weakness in the affected arm, leading to difficulty in certain activities.",
+            "value": "zwakte"
+        },
+        {
+            "label": "Koude Vingers",
+            "description": "A sensation of cold in the fingers or hands due to reduced blood circulation.",
+            "value": "kou"
+        },
+        {
+            "label": "Zwelling",
+            "description": "Swelling in the hands or fingers, particularly towards the end of the day.",
+            "value": "zwelling"
+        },
+        {
+            "label": "Coördinatieverlies",
+            "description": "Difficulty in coordinating movements, especially fine motor skills.",
+            "value": "coördinatie"
+        },
+        {
+            "label": "Armvermoeidheid",
+            "description": "Quick onset of fatigue in the arm during activities or sustained positions.",
+            "value": "vermoeidheid"
+        },
+        {
+            "label": "Blauwachtige Verkleuring",
+            "description": "Bluish tint to the fingers or hands due to reduced blood flow (more severe cases).",
+            "value": "blauwachtige verkleuring"
+        }
+    ]
+}
