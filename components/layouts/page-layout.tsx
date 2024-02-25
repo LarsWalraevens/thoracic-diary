@@ -10,7 +10,7 @@ export default function PageLayout(props: {
     const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
 
     return <>
-        <header className=" h-14 w-screen mx-auto max-w-[1200px] px-4 flex items-center justify-between">
+        <header className="h-20 w-screen mx-auto max-w-[1200px] px-4 flex items-center justify-between">
             {
                 isLoggedIn === "admin" && <AddPost />
             }
