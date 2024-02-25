@@ -1,11 +1,11 @@
 import { MyPost, postsAtom } from "@/components/pages/posts-page";
 import symptoms from "@/lib/symptoms.json";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { v4 as uuidv4 } from 'uuid';
 import { z } from "zod";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
@@ -21,6 +21,46 @@ import { Textarea } from "../ui/textarea";
 export default function AddPost() {
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const [posts, setPosts] = useAtom(postsAtom);
+    const queryClient = useQueryClient();
+    const mutateNewPost = useMutation({
+        mutationKey: ["newPost"],
+        mutationFn: (propsFn: {
+            text: string,
+            type: string,
+            tags: string,
+            isPrivate: boolean
+        }) => fetch("/api/add", {
+            method: "POST",
+            body: JSON.stringify({
+                ...propsFn
+            }),
+        }).then((res) => res.json()),
+        retry: false,
+        onSettled: () => {
+            queryClient.refetchQueries({ queryKey: ['getPosts'], type: 'active' })
+        }
+    });
+
+    const mutateEditPost = useMutation({
+        mutationKey: ["editPost"],
+        mutationFn: (propsFn: {
+            text: string,
+            type: string,
+            tags: string,
+            isPrivate: boolean;
+            id: string
+        }) => fetch("/api/edit", {
+            method: "POST",
+            body: JSON.stringify({
+                ...propsFn
+            }),
+        }).then((res) => res.json()),
+        retry: false,
+        onSettled: () => {
+            queryClient.refetchQueries({ queryKey: ['getPosts'], type: 'active' })
+        }
+    });
+
     const searchParams = useSearchParams();
     const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
@@ -35,22 +75,20 @@ export default function AddPost() {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         if (searchParams.get("edit")) {
-            setPosts((prev) => prev.map(post => {
-                if (post.id === searchParams.get("edit")) {
-                    return { ...post, text: values.text, type: values.type, tags: values.tags }
-                } else {
-                    return post
-                }
-            }))
-        } else {
-            setPosts((prev) => [...prev, {
-                date: new Date,
+            mutateEditPost.mutate({
                 text: values.text,
                 type: values.type,
-                tags: values.tags,
-                id: uuidv4(),
+                tags: values.tags.toString(),
+                isPrivate: values.isPrivate,
+                id: searchParams.get("edit")!
+            })
+        } else {
+            mutateNewPost.mutate({
+                text: values.text,
+                type: values.type,
+                tags: values.tags.toString(),
                 isPrivate: values.isPrivate
-            }]);
+            });
         }
 
         setIsDialogOpen(false);
@@ -60,21 +98,27 @@ export default function AddPost() {
 
     useEffect(() => {
         if (searchParams.get("edit")) {
-            const filter: Array<MyPost> = posts.filter(post => post.id === searchParams.get("edit"));
+            console.log(searchParams.get("edit"), posts);
+            const filter: Array<MyPost> = posts.filter(post => post.id.toString() === searchParams.get("edit")?.toString());
             if (filter.length > 0) {
                 const selected: MyPost = filter[0];
                 form.setValue("text", selected.text as string);
                 form.setValue("type", selected.type);
-                form.setValue("tags", selected.tags);
-                form.setValue("isPrivate", selected.isPrivate);
+                form.setValue("tags", !selected.tags ? [] : Array.isArray(selected.tags) ? selected.tags : (selected.tags as unknown as string).split(","));
+                form.setValue("isPrivate", selected.isPrivate || false);
                 setIsDialogOpen(true);
             }
         }
-    }, [searchParams.get("edit")]);
+    }, [searchParams.get("edit"), posts]);
 
     return (
         <div>
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <Dialog open={isDialogOpen} onOpenChange={(open: boolean) => {
+                if (searchParams.get("edit") && !open) {
+                    router.replace("/");
+                }
+                setIsDialogOpen(open);
+            }}>
                 <DialogTrigger asChild>
                     <Button className="px-3 py-0" >Add new post</Button>
                 </DialogTrigger>
@@ -144,7 +188,7 @@ export default function AddPost() {
                                                             return <Fragment key={i}>
                                                                 <div className="flex items-center space-x-2 my-2">
                                                                     <Checkbox
-                                                                        defaultChecked={form.getValues("tags").includes(item.value as string)}
+                                                                        defaultChecked={!form.getValues("tags") ? false : form.getValues("tags").includes(item.value as string)}
                                                                         value={item.value}
                                                                         onCheckedChange={(checked) => {
                                                                             const filteredItems: Array<string> = form.getValues("tags").filter((val: any) => val !== item.value)
@@ -194,7 +238,7 @@ export default function AddPost() {
 
                                 )}
                             />
-                            <Button className="min-w-24" type="submit">Post</Button>
+                            <Button disabled={mutateNewPost.isPending ? true : false} className="min-w-24" type="submit">Post</Button>
                         </form>
                     </Form>
                 </DialogContent>
