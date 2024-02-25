@@ -27,7 +27,8 @@ export default function PostsPage() {
         }),
         refetchOnWindowFocus: false,
         retry: false,
-        enabled: true
+        enabled: true,
+        staleTime: 0
     });
 
     const mutateDeletePost = useDeletePost({ refetch });
