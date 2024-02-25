@@ -33,7 +33,7 @@ export default function PageLayout(props: {
                     isLoggedIn &&
                     <button onClick={() => {
                         setIsLoggedIn(false);
-                        document.cookie = cookie.serialize("rememberUser", "", { path: "/", secure: true, maxAge: 0 });
+                        window.document.cookie = cookie.serialize("rememberUser", "", { path: "/", secure: true, maxAge: 0 });
                     }} className="font-medium hover:text-blue-500">Logout</button>
                 }
             </div>

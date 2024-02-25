@@ -1,4 +1,3 @@
-import PageLayout from "@/components/layouts/page-layout";
 import symptoms from "@/lib/symptoms.json";
 import { atom, useAtom } from "jotai";
 import { useRouter } from "next/navigation";
@@ -7,6 +6,8 @@ import { Badge } from "../ui/badge";
 import { Event } from "../ui/event";
 import { Post, PostProps } from "../ui/post";
 import { isLoggedInAtom } from "@/lib/states";
+import dynamic from "next/dynamic";
+const PageLayout = dynamic(() => import("@/components/layouts/page-layout"), { ssr: false });
 
 export const postsAtom = atom<MyPost[]>([]);
 

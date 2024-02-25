@@ -1,4 +1,3 @@
-import PageLayout from "@/components/layouts/page-layout";
 import { zodResolver } from "@hookform/resolvers/zod";
 import cookie from "cookie";
 import { useAtom } from "jotai";
@@ -10,6 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { isLoggedInAtom } from "@/lib/states";
+import dynamic from "next/dynamic";
+const PageLayout = dynamic(() => import("@/components/layouts/page-layout"), { ssr: false });
 
 export default function LoginPage() {
     const [_, setIsLoggedIn] = useAtom(isLoggedInAtom);
