@@ -25,8 +25,8 @@ export default function PageLayout(props: {
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[725px]">
                         <DialogHeader>
-                            <DialogTitle>Thoracic outlet syndrome diary</DialogTitle>
-</DialogHeader> <p>This is a diary where I will post daily updates on how I feel during the day when struggling with thoracic outlet syndrome. So I can focus on what triggers what and to track the journey more effectively. This diary is meant for my personal use only.
+                            <DialogTitle className="text-left">Thoracic outlet syndrome diary</DialogTitle>
+                        </DialogHeader> <p>This is a diary where I will post updates on how I feel during the day when struggling with symptoms of thoracic outlet syndrome. So I can focus on what triggers it and to track the journey more effectively. This diary is meant for personal use only.
                         </p>
                     </DialogContent>
                 </Dialog>

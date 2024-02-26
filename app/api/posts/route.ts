@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: NextRequest) {
     try {
         catchUserAuth(request);
-        const { rows } = await sql`SELECT * from POSTS ORDER BY id DESC`;
+        const { rows } = await sql`SELECT * from thoracic_posts ORDER BY id DESC`;
         return NextResponse.json(rows);
     } catch (error) {
         console.error(error);

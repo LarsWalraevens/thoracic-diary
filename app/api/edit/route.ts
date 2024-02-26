@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
         const { text, isprivate, type, tags } = requestBody;
 
         // Use template literals directly
-        const myQuery = sql`UPDATE posts SET text = ${text}, isprivate = ${isprivate || false}, type = ${type}, tags = ${tags} WHERE id = ${requestBody.id}`;
+        const myQuery = sql`UPDATE thoracic_posts SET text = ${text}, isprivate = ${isprivate || false}, type = ${type}, tags = ${tags} WHERE id = ${requestBody.id}`;
 
         // Execute the query
         const res = await myQuery;

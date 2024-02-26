@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
         const date = dayjs().format('YYYY-MM-DD HH:mm:ss');
 
         // Use template literals directly
-        const myQuery = sql`INSERT INTO posts (Text, Date, Isprivate, Type, Tags) VALUES (${text}, ${date}, ${isprivate || false}, ${type}, ${tags})`;
+        const myQuery = sql`INSERT INTO thoracic_posts (Text, Date, Isprivate, Type, Tags) VALUES (${text}, ${date}, ${isprivate || false}, ${type}, ${tags})`;
 
         // Execute the query
         const res = await myQuery;

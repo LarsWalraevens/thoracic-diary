@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
         }
         const { id } = requestBody;
 
-        const myQuery = sql`DELETE FROM posts WHERE id =${id}`;
+        const myQuery = sql`DELETE FROM thoracic_posts WHERE id =${id}`;
 
         const res = await myQuery;
 
