@@ -37,7 +37,7 @@ const Post = React.forwardRef<HTMLDivElement, PostProps>(
                         props.isprivate && <Lock size={16} className="mr-2" />
                     }
                     <span>
-                        Lars - {dayjs(props.date).format("MMMM DD, YYYY hh:mm A")}
+                        Lars - {dayjs(props.date).format("HH:mmu, DD MMMM YYYY")}
                     </span>
                     {
                         isLoggedIn === "admin" && <div className="flex flex-row justify-center items-center gap-2 mx-2">

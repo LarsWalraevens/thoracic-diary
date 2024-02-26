@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import { useAtom } from "jotai";
-import { Edit2, Lock, TimerIcon, Trash2 } from "lucide-react";
+import { AlertTriangle, CalendarClock, Edit2, Lock, TimerIcon, Trash2 } from "lucide-react";
 import * as React from "react";
 import { Label } from "./label";
 import { isLoggedInAtom } from "@/lib/states";
@@ -38,7 +38,7 @@ const Event = React.forwardRef<HTMLDivElement, EventProps>(
                         props.isprivate && <Lock size={16} className="mr-2" />
                     }
                     <span>
-                        Lars - {dayjs(props.date).format("MMMM DD, YYYY hh:mm A")}
+                        Lars - {dayjs(props.date).format("HH:mmu, DD MMMM YYYY")}
                     </span>
                     {
                         isLoggedIn === "admin" && <div className="flex flex-row justify-center items-center gap-2 mx-2">
@@ -51,7 +51,7 @@ const Event = React.forwardRef<HTMLDivElement, EventProps>(
                 <div className="flex items-center  flex-row gap-4 border rounded-full shadow p-3">
 
                     <span title="Important event">
-                        <TimerIcon size={25} className="text-sky-600" />
+                        <AlertTriangle size={25} className="text-sky-600" />
                     </span>
                     <div className="">
                         <p className="mb-0">

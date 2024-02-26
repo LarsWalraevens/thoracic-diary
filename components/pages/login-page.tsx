@@ -48,7 +48,7 @@ export default function LoginPage() {
 
     return <>
         <PageLayout>
-            <section className="flex justify-center items-center my-[20vh]">
+            <section className="flex justify-center items-center mt-[17vh]">
                 <Card className="lg:max-w-[700px] lg:w-[500px] w-full max-lg:border-none max-md:[&_>*]:px-0">
                     <CardHeader>
                         <CardTitle className="mb-2">Log in</CardTitle>

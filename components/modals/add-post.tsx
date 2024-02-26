@@ -112,7 +112,7 @@ export default function AddPost() {
     }, [searchParams.get("edit"), posts]);
 
     return (
-        <div>
+        <div className="max-md:mx-1">
             <Dialog open={isDialogOpen} onOpenChange={(open: boolean) => {
                 if (searchParams.get("edit") && !open) {
                     router.replace("/");
