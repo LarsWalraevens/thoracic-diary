@@ -37,11 +37,11 @@ const Post = React.forwardRef<HTMLDivElement, PostProps>(
                         props.isprivate && <Lock size={16} className="mr-2" />
                     }
                     <span>
-                        Lars - {dayjs(props.date).format("HH:mmu, DD MMMM YYYY")}
+                        {dayjs(props.date).format("dddd HH:mmu - DD MMMM YYYY")}
                     </span>
                     {
                         isLoggedIn === "admin" && <div className="flex flex-row justify-center items-center gap-2 mx-2">
-                            <span>-</span>
+                            <span>|</span>
                             <Edit2 className="hover:text-blue-700 cursor-pointer" size={16} onClick={() => props.onEdit(props.id)} />
                             <Trash2 className="hover:text-red-700 cursor-pointer" size={16} onClick={() => confirm("Are you sure?") && props.onDelete(props.id)} />
                         </div>

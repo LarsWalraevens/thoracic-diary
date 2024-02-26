@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Thoracic Diary",
-  description: "Diary through the thoracic outlet syndrome to keep track of what I feel in my body",
+  title: "My Thoracic Diary",
+  description: "A diary where I will post updates on how I feel during the day when struggling with symptoms of thoracic outlet syndrome. So I can focus on what triggers it and to track the journey more effectively.",
 };
 
 export default function RootLayout({

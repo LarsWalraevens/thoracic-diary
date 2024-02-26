@@ -69,7 +69,7 @@ export default function PostsPage() {
                             .map(([groupedDate, postsInMonth], i) =>
                                 // Render each grouped month with its posts
                                 <div key={i}>
-                                    <h1 className="lg:text-center mb-4 max-lg:text-2xl text-3xl font-bold">{groupedDate}</h1>
+                                    <h1 className="lg:text-center mb-4 max-lg:text-2xl text-3xl font-bold">{groupedDate.charAt(0).toUpperCase() + groupedDate.slice(1)}</h1>
                                     {
                                         // Map through the posts in the current month
                                         (postsInMonth as any).map((post: MyPost, i: number) =>
