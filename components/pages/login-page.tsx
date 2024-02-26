@@ -32,15 +32,15 @@ export default function LoginPage() {
             isValidPass = true;
         }
 
-        if (isValidPass) document.cookie = cookie.serialize("rememberUser", password, { path: "/", secure: true });
+        if (isValidPass) document.cookie = cookie.serialize("userSecret", password, { path: "/", secure: true, maxAge: 60 * 60 * 24 * 30 });
         else form.setError("password", { message: "Invalid password" });
     }
 
     useEffect(() => {
-        if (cookies.rememberUser) {
-            handleLoginState(cookies.rememberUser);
+        if (cookies.userSecret) {
+            handleLoginState(cookies.userSecret);
         }
-    }, [cookies.rememberUser]);
+    }, [cookies.userSecret]);
 
     function onSubmitLogin(values: z.infer<typeof formSchema>) {
         handleLoginState(values.password)

@@ -16,6 +16,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Switch } from "../ui/switch";
 import { Textarea } from "../ui/textarea";
+import { TimePicker } from "../ui/time-picker";
+import { DateTimePicker } from "../ui/date-time-picker";
 
 
 export default function AddPost() {
@@ -28,7 +30,8 @@ export default function AddPost() {
             text: string,
             type: string,
             tags: string,
-            isprivate: boolean
+            isprivate: boolean,
+            date: Date
         }) => fetch("/api/add", {
             method: "POST",
             body: JSON.stringify({
@@ -48,7 +51,8 @@ export default function AddPost() {
             type: string,
             tags: string,
             isprivate: boolean;
-            id: string
+            id: string;
+            date: Date;
         }) => fetch("/api/edit", {
             method: "POST",
             body: JSON.stringify({
@@ -69,7 +73,8 @@ export default function AddPost() {
             text: "",
             type: "post",
             tags: [],
-            isprivate: false
+            isprivate: false,
+            date: new Date()
         },
     });
 
@@ -80,14 +85,16 @@ export default function AddPost() {
                 type: values.type,
                 tags: values.tags.toString(),
                 isprivate: values.isprivate,
-                id: searchParams.get("edit")!
+                id: searchParams.get("edit")!,
+                date: values.date
             })
         } else {
             mutateNewPost.mutate({
                 text: values.text,
                 type: values.type,
                 tags: values.tags.toString(),
-                isprivate: values.isprivate
+                isprivate: values.isprivate,
+                date: values.date
             });
         }
 
@@ -105,6 +112,7 @@ export default function AddPost() {
                 form.setValue("type", selected.type);
                 form.setValue("tags", !selected.tags ? [] : Array.isArray(selected.tags) ? selected.tags : (selected.tags as unknown as string).split(","));
                 form.setValue("isprivate", selected.isprivate || false);
+                form.setValue("date", new Date(selected.date) || new Date());
                 setIsDialogOpen(true);
             }
         }
@@ -112,12 +120,14 @@ export default function AddPost() {
 
     return (
         <div className="max-md:mx-1">
-            <Dialog open={isDialogOpen} onOpenChange={(open: boolean) => {
-                if (searchParams.get("edit") && !open) {
-                    router.replace("/");
-                }
-                setIsDialogOpen(open);
-            }}>
+            <Dialog
+                open={isDialogOpen}
+                onOpenChange={(open: boolean) => {
+                    if (searchParams.get("edit") && !open) {
+                        router.replace("/");
+                    }
+                    setIsDialogOpen(open);
+                }}>
                 <DialogTrigger asChild>
                     <Button className="px-3 py-0" >Add post</Button>
                 </DialogTrigger>
@@ -140,6 +150,20 @@ export default function AddPost() {
                                         <FormLabel className="required">What do you want to share:</FormLabel>
                                         <FormControl>
                                             <Textarea required  {...field} />
+                                        </FormControl>
+                                        <FormDescription />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                name="date"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <FormItem className="pb-2 relative">
+                                        <FormLabel>Change the date:</FormLabel>
+                                        <FormControl>
+                                            <DateTimePicker value={field.value as Date} onChange={field.onChange} />
                                         </FormControl>
                                         <FormDescription />
                                         <FormMessage />
@@ -246,5 +270,6 @@ const formSchema = z.object({
     text: z.string().min(1, { message: "Fill this in" }),
     type: z.enum(["post", "event"]),
     tags: z.array(z.string()),
-    isprivate: z.boolean()
+    isprivate: z.boolean(),
+    date: z.date()
 })

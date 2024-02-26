@@ -7,13 +7,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export async function catchUserAuth(request: NextRequest) {
-  if (!request.cookies.get("rememberUser") || (request.cookies.get("rememberUser")!.value !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD && request.cookies.get("rememberUser")!.value !== process.env.NEXT_PUBLIC_USER_PASSWORD)) {
+  if (!request.cookies.get("userSecret") || (request.cookies.get("userSecret")!.value !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD && request.cookies.get("userSecret")!.value !== process.env.NEXT_PUBLIC_USER_PASSWORD)) {
     return NextResponse.json({ message: "Access denied", status: 403 }, { status: 403 });
   }
 }
 
 export async function catchAdminAuth(request: NextRequest) {
-  if (!request.cookies.get("rememberUser") || (request.cookies.get("rememberUser")!.value !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD)) {
+  if (!request.cookies.get("userSecret") || (request.cookies.get("userSecret")!.value !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD)) {
     return NextResponse.json({ message: "Access denied", status: 403 }, { status: 403 });
   }
 }

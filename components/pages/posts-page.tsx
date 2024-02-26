@@ -48,7 +48,7 @@ export default function PostsPage() {
                     <Skeleton className="h-32 w-full rounded-lg" />
                     <Skeleton className="h-32 w-full rounded-lg" />
                 </div> : isError ? <h1 className="text-center text-xl my-10">Error: Something went wrong trying to fetch the posts</h1> :
-                    posts && posts.length > 0 && isLoggedIn ? posts.map((post, i) => post.isprivate && isLoggedIn === "user" ? null : <Fragment key={i}>
+                    posts && posts.length > 0 && isLoggedIn ? posts.sort((a: any, b: any) => a.date > b.date ? -1 : 1).map((post, i) => post.isprivate && isLoggedIn === "user" ? null : <Fragment key={i}>
                         <div className="mb-5 relative">
                             {
                                 post.type === "event" ? <Event className="mb-2" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} /> :
