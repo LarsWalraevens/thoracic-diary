@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 
 export default function PageLayout(props: {
     children: React.ReactNode;
+    className?: string;
 }) {
     const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
 
@@ -39,7 +40,7 @@ export default function PageLayout(props: {
                 }
             </div>
         </header >
-        <main className="mx-auto max-w-[1200px] px-4 my-6">
+        <main className={`mx-auto max-w-[1200px] px-4 my-6 ${props.className || ''}`}>
             {props.children}
         </main>
     </>

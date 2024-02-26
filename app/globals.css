@@ -69,3 +69,19 @@
     @apply before:content-["*"] before:text-red-700 before:mr-1
   }
 }
+
+.dialog-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+.dialog-scroll::-webkit-scrollbar-track {
+  @apply bg-zinc-900;
+  border-radius:10px 100px 100px 10px;
+}
+ .dialog-scroll::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius:10px ;
+}
+.dialog-scroll::-webkit-scrollbar-thumb:hover {
+  
+  background: #555; 
+} 

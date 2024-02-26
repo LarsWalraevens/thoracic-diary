@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 import { GetServerSideProps } from "next";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Skeleton } from "../ui/skeleton";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 const PageLayout = dynamic(() => import("@/components/layouts/page-layout"), { ssr: false });
 
 export const postsAtom = atom<MyPost[]>([]);
@@ -41,7 +42,7 @@ export default function PostsPage() {
     }
 
     return <>
-        <PageLayout>
+        <PageLayout className={`mb-20`}>
             {
                 isLoading ? <div className="flex flex-col justify-center items-center gap-4">
                     <Skeleton className="h-32 w-full rounded-lg" />
@@ -49,21 +50,31 @@ export default function PostsPage() {
                     <Skeleton className="h-32 w-full rounded-lg" />
                 </div> : isError ? <h1 className="text-center text-xl my-10">Error: Something went wrong trying to fetch the posts</h1> :
                     posts && posts.length > 0 && isLoggedIn ? posts.sort((a: any, b: any) => a.date > b.date ? -1 : 1).map((post, i) => post.isprivate && isLoggedIn === "user" ? null : <Fragment key={i}>
-                        <div className="mb-5 relative">
+                        <div className="mb-7 relative">
                             {
-                                post.type === "event" ? <Event className="mb-2" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} /> :
-                                    <Post className="mb-2" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} />
+                                post.type === "event" ? <Event className="mb-3" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} /> :
+                                    <Post className="mb-3" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} />
                             }
-                            <div className="flex flex-row flex-wrap gap-1">
+                            <div className="flex flex-row flex-wrap gap-2 mx-2">
                                 {
                                     post.tags && (post.tags as unknown as string).split(",").map((tag: string, i: number) => {
                                         const tagData = symptoms.symptoms.filter(symptom => symptom.value === tag).length > 0 ? symptoms.symptoms.filter(symptom => symptom.value === tag)[0] : undefined;
-                                        return <Badge
-                                            variant="secondary"
-                                            title={(tagData && tagData.description) || undefined}
-                                            key={i}>
-                                            {tagData?.label.toLowerCase() || tag}
-                                        </Badge>
+                                        if (!tagData) return null;
+                                        return <TooltipProvider key={i}>
+                                            <Tooltip>
+                                                <TooltipTrigger>
+                                                    <Badge
+                                                        variant="secondary"
+                                                        key={i}>
+                                                        {tagData?.label.toLowerCase() || tag}
+                                                    </Badge>
+
+                                                </TooltipTrigger>
+                                                <TooltipContent>
+                                                    <p>{tagData.description}</p>
+                                                </TooltipContent>
+                                            </Tooltip>
+                                        </TooltipProvider>
                                     })
                                 }
                             </div>

@@ -127,11 +127,12 @@ export default function AddPost() {
                         router.replace("/");
                     }
                     setIsDialogOpen(open);
-                }}>
+                }}
+            >
                 <DialogTrigger asChild>
                     <Button className="px-3 py-0" >Add post</Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[725px]">
+                <DialogContent className="sm:max-w-[725px] lg:max-w-screen-lg overflow-y-auto max-h-screen dialog-scroll">
                     <DialogHeader>
                         <DialogTitle>New post</DialogTitle>
                     </DialogHeader>
@@ -204,7 +205,7 @@ export default function AddPost() {
                                         <FormLabel className="block mb-1" >Add tags:</FormLabel>
                                         <FormControl>
                                             <Popover>
-                                                <PopoverTrigger><p className="hover:bg-white hover:text-black border border-gray-400/40 px-2 pb-1 rounded text-[14px]">See available tags {form.getValues("tags") && form.getValues("tags").length > 0 ? `(${form.getValues("tags").length})` : ""}</p></PopoverTrigger>
+                                                <PopoverTrigger><p className="hover:bg-white hover:text-black border border-gray-400/40 px-2 py-1 rounded text-[14px] min-w-[200px]">See available tags {form.getValues("tags") && form.getValues("tags").length > 0 ? `(${form.getValues("tags").length})` : ""}</p></PopoverTrigger>
                                                 <PopoverContent>
                                                     {
                                                         symptoms && symptoms.symptoms && symptoms.symptoms.length > 0 ? symptoms.symptoms.map((item: { label: string; value: string, description: string }, i: number) => {
