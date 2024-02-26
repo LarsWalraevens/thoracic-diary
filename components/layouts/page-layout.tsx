@@ -4,8 +4,8 @@ import { useAtom } from "jotai";
 import AddPost from "../modals/add-post";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import dayjs from "dayjs";
-import "dayjs/locale/nl"
-dayjs.locale('nl')
+import "dayjs/locale/nl-be"
+dayjs.locale('nl-be')
 
 export default function PageLayout(props: {
     children: React.ReactNode;

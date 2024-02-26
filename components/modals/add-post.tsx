@@ -104,6 +104,11 @@ export default function AddPost() {
     };
 
     useEffect(() => {
+        if (searchParams.get("edit")) return
+        form.reset();
+    }, [isDialogOpen])
+
+    useEffect(() => {
         if (searchParams.get("edit")) {
             const filter: Array<MyPost> = posts.filter(post => post.id.toString() === searchParams.get("edit")?.toString());
             if (filter.length > 0) {
