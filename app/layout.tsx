@@ -1,5 +1,4 @@
 import { ReactQueryProvider } from "@/lib/react-query-provider";
-import { atom } from "jotai";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -10,8 +9,6 @@ export const metadata: Metadata = {
   title: "Thoracic Diary",
   description: "Diary through the thoracic outlet syndrome to keep track of what I feel in my body",
 };
-
-export const isDarkModeAtom = atom<boolean>(true);
 
 export default function RootLayout({
   children,
