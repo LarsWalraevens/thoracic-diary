@@ -98,7 +98,6 @@ export default function AddPost() {
 
     useEffect(() => {
         if (searchParams.get("edit")) {
-            console.log(searchParams.get("edit"), posts);
             const filter: Array<MyPost> = posts.filter(post => post.id.toString() === searchParams.get("edit")?.toString());
             if (filter.length > 0) {
                 const selected: MyPost = filter[0];
@@ -120,7 +119,7 @@ export default function AddPost() {
                 setIsDialogOpen(open);
             }}>
                 <DialogTrigger asChild>
-                    <Button className="px-3 py-0" >Add new post</Button>
+                    <Button className="px-3 py-0" >Add post</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[725px]">
                     <DialogHeader>
@@ -191,12 +190,7 @@ export default function AddPost() {
                                                                         defaultChecked={!form.getValues("tags") ? false : form.getValues("tags").includes(item.value as string)}
                                                                         value={item.value}
                                                                         onCheckedChange={(checked) => {
-                                                                            const filteredItems: Array<string> = form.getValues("tags").filter((val: any) => val !== item.value)
-                                                                            console.log({
-                                                                                form: form.getValues(),
-                                                                                field,
-                                                                                e: checked, filteredItems
-                                                                            })
+                                                                            const filteredItems: Array<string> = form.getValues("tags").filter((val: any) => val !== item.value);
                                                                             if (checked) {
                                                                                 field.onChange([...filteredItems, (item.value as string)]);
                                                                             } else {

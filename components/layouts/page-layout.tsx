@@ -1,10 +1,8 @@
+import { isLoggedInAtom } from "@/lib/states";
 import cookie from "cookie";
 import { useAtom } from "jotai";
 import AddPost from "../modals/add-post";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
-import { isLoggedInAtom } from "@/lib/states";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
-import Link from "next/link";
 
 export default function PageLayout(props: {
     children: React.ReactNode;
@@ -13,14 +11,7 @@ export default function PageLayout(props: {
 
     return <>
         <header className="h-20 w-screen mx-auto max-w-[1200px] px-4 flex items-center justify-between"><p className="mb-0 font-bold flex flex-row items-center text-lg">
-            <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger className="cursor-default"><span className="scale-125">{logoSvg}</span></TooltipTrigger>
-                    <TooltipContent>
-                        <p>Logo - <Link href={"https://larswalraevens.be"} target={"_blank"} className="underline hover:text-blue-500">Lars Walraevens</Link></p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
+            <span title="Logo" className="scale-125">{logoSvg}</span>
         </p>
             <div className="flex items-center justify-end flex-row gap-4 w-full h-full">
                 {
