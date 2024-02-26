@@ -48,7 +48,7 @@ const Post = React.forwardRef<HTMLDivElement, PostProps>(
                     }
                 </Label>
                 <p
-                    className="rounded-md border border-gray-600 bg-zinc-900 whitespace-pre-line py-4 px-3"
+                    className="rounded-md border border-gray-600 bg-zinc-900 whitespace-pre-line p-3"
                 >
                     {
                         props.text
