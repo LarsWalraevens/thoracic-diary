@@ -14,6 +14,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/
 import dayjs from "dayjs";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { HelpCircle } from "lucide-react";
+import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "../ui/drawer";
 const PageLayout = dynamic(() => import("@/components/layouts/page-layout"), { ssr: false });
 
 export const postsAtom = atom<MyPost[]>([]);
@@ -83,7 +84,7 @@ export default function PostsPage() {
                                                             <Event className="mb-3" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} /> :
                                                             <Post className="mb-3" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} />
                                                     }
-                                                    <div className="flex flex-row flex-wrap gap-2 mx-2">
+                                                    <div className="flex flex-row flex-wrap gap-1.5 mx-2">
                                                         {
                                                             // Map through the tags of the current post and render badges with tooltips
                                                             post.tags && (post.tags as unknown as string).split(",").map((tag: string, i: number) => {
@@ -97,12 +98,12 @@ export default function PostsPage() {
                                                                 if (!tagData) return null;
                                                                 return <Fragment key={i}>
                                                                     <Popover>
-                                                                        <PopoverTrigger>
+                                                                        <PopoverTrigger className="max-md:hidden">
                                                                             <Badge variant="secondary" className="pointer" key={i}>
                                                                                 {tagData?.label.toLowerCase() || tag}
                                                                             </Badge>
                                                                         </PopoverTrigger>
-                                                                        <PopoverContent className="lg:min-w-[500px]">
+                                                                        <PopoverContent className="md:min-w-[500px]">
                                                                             <p className="font-bold  block text-lg mb-2">{tagData.label}</p>
                                                                             <p className="mb-3">{tagData.description}</p>
                                                                             {
@@ -117,20 +118,30 @@ export default function PostsPage() {
 
                                                                         </PopoverContent>
                                                                     </Popover>
+                                                                    <Drawer>
+                                                                        <DrawerTrigger className="hidden max-md:inline-block">
+                                                                            <Badge variant="secondary" className="pointer" key={i}>
+                                                                                {tagData?.label.toLowerCase() || tag}
+                                                                            </Badge>
+                                                                        </DrawerTrigger>
+                                                                        <DrawerContent className="pb-7">
+                                                                            <DrawerHeader>
+                                                                                <DrawerTitle className="text-2xl mb-2">{tagData.label || tag}</DrawerTitle>
+                                                                                <DrawerDescription>{tagData.description}</DrawerDescription>
+                                                                            </DrawerHeader>
 
+                                                                            {
+                                                                                tagData.solution && <div className="m-4">
+                                                                                    <p className="font-bold  mb-1">
+                                                                                        <HelpCircle size={18} className="inline-block mr-1" />
+                                                                                        Help:
+                                                                                    </p>
+                                                                                    <p className="text-gray-300">{tagData.solution}</p>
+                                                                                </div>
+                                                                            }
+                                                                        </DrawerContent>
+                                                                    </Drawer>
                                                                 </Fragment>
-                                                                //  <TooltipProvider key={i}>
-                                                                //     <Tooltip>
-                                                                //         <TooltipTrigger>
-                                                                //             <Badge variant="secondary" key={i}>
-                                                                //                 {tagData?.label.toLowerCase() || tag}
-                                                                //             </Badge>
-                                                                //         </TooltipTrigger>
-                                                                //         <TooltipContent>
-                                                                //             <p>{tagData.description}</p>
-                                                                //         </TooltipContent>
-                                                                //     </Tooltip>
-                                                                // </TooltipProvider>
                                                             })
                                                         }
                                                     </div>
