@@ -1,20 +1,18 @@
-import symptoms from "@/lib/symptoms.json";
-import { atom, useAtom } from "jotai";
-import { useRouter } from "next/navigation";
-import { Fragment, useEffect } from "react";
-import { Badge } from "../ui/badge";
-import { Event } from "../ui/event";
-import { Post, PostProps } from "../ui/post";
 import { isLoggedInAtom } from "@/lib/states";
-import dynamic from "next/dynamic";
-import { GetServerSideProps } from "next";
+import symptoms from "@/lib/symptoms.json";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Skeleton } from "../ui/skeleton";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 import dayjs from "dayjs";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { atom, useAtom } from "jotai";
 import { HelpCircle } from "lucide-react";
-import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "../ui/drawer";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { Fragment, useState } from "react";
+import { Badge } from "../ui/badge";
+import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from "../ui/drawer";
+import { Event } from "../ui/event";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Post, PostProps } from "../ui/post";
+import { Skeleton } from "../ui/skeleton";
 const PageLayout = dynamic(() => import("@/components/layouts/page-layout"), { ssr: false });
 
 export const postsAtom = atom<MyPost[]>([]);
@@ -33,7 +31,6 @@ export default function PostsPage() {
         refetchOnWindowFocus: false,
         retry: false,
         enabled: true,
-        staleTime: 0
     });
 
     const mutateDeletePost = useDeletePost({ refetch });

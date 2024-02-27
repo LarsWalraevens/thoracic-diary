@@ -5,6 +5,7 @@ import AddPost from "../modals/add-post";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import dayjs from "dayjs";
 import "dayjs/locale/nl-be"
+import { useState } from "react";
 dayjs.locale('nl-be')
 
 export default function PageLayout(props: {
@@ -12,38 +13,61 @@ export default function PageLayout(props: {
     className?: string;
 }) {
     const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
+    const [isTopPage, setIsTopPage] = useState(true);
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        if (!isLoggedIn) return
+        if (window.scrollY === 0 && !isTopPage) {
+            setIsTopPage(true);
+        }
+        if (window.scrollY > 0 && isTopPage) {
+            setIsTopPage(false);
+        }
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            document.getElementsByTagName("header")[0]!.style.top = "0";
+        } else {
+            document.getElementsByTagName("header")[0]!.style.top = "-150px";
+        }
+        prevScrollpos = currentScrollPos;
+    }
 
     return <>
-        <header className="h-20 w-screen mx-auto max-w-[1200px] px-4 flex items-center justify-between"><p className="mb-0 font-bold flex flex-row items-center text-lg">
-            <span title="Logo" className="scale-125">{logoSvg}</span>
-        </p>
-            <div className="flex items-center justify-end flex-row gap-4 w-full h-full">
-                {
-                    isLoggedIn === "admin" && <>
-                        <AddPost />
-                        <span className="text-gray-400 max-md:hidden">-</span></>
-                }
-                <Dialog>
-                    <DialogTrigger asChild>
-                        <button className="font-medium hover:text-blue-500">Help</button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[725px]">
-                        <DialogHeader>
-                            <DialogTitle className="text-left">Thoracic outlet syndrome diary</DialogTitle>
-                        </DialogHeader> <p>This is a diary where I will post updates on how I feel during the day when struggling with symptoms of thoracic outlet syndrome. So I can focus on what triggers it and to track the journey more effectively. This diary is meant for personal use only.
-                        </p>
-                    </DialogContent>
-                </Dialog>
-                {
-                    isLoggedIn &&
-                    <button onClick={() => {
-                        setIsLoggedIn(false);
-                        window.document.cookie = cookie.serialize("userSecret", "", { path: "/", secure: true, maxAge: 0 });
-                    }} className="font-medium hover:text-blue-500">Logout</button>
-                }
+        <header className={`w-full relative h-20 duration-1000  z-10`}>
+            <div className={`w-full h-20 ${isTopPage ? '' : isLoggedIn ? ' fixed  !bg-zinc-950 border-b-slate-900 border-b' : ''}`}>
+                <div className="mx-auto max-w-[1200px] h-full px-4 flex items-center justify-between">
+                    <p className="mb-0 font-bold flex flex-row items-center text-lg">
+                        <span title="Logo" className="scale-125">{logoSvg}</span>
+                    </p>
+                    <div className="flex items-center justify-end flex-row gap-4 w-full h-full">
+                        {
+                            isLoggedIn === "admin" && <>
+                                <AddPost />
+                                <span className="text-gray-400 max-md:hidden">-</span></>
+                        }
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <button className="font-medium hover:text-blue-500">Help</button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[725px]">
+                                <DialogHeader>
+                                    <DialogTitle className="text-left">Thoracic outlet syndrome diary</DialogTitle>
+                                </DialogHeader> <p>This is a diary where I will post updates on how I feel during the day when struggling with symptoms of thoracic outlet syndrome. So I can focus on what triggers it and to track the journey more effectively. This diary is meant for personal use only.
+                                </p>
+                            </DialogContent>
+                        </Dialog>
+                        {
+                            isLoggedIn &&
+                            <button onClick={() => {
+                                setIsLoggedIn(false);
+                                window.document.cookie = cookie.serialize("userSecret", "", { path: "/", secure: true, maxAge: 0 });
+                            }} className="font-medium hover:text-blue-500">Logout</button>
+                        }
+                    </div>
+                </div>
             </div>
         </header >
-        <main className={`mx-auto max-w-[1200px] px-4 my-6 ${props.className || ''}`}>
+        <main className={`mx-auto max-w-[1200px] z-[1] relative px-4 my-7 ${props.className || ''}`}>
             {props.children}
         </main>
     </>
