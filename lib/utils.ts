@@ -6,14 +6,18 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export async function catchUserAuth(request: NextRequest) {
+export async function isUserAuth(request: NextRequest): Promise<boolean> {
   if (!request.cookies.get("userSecret") || (request.cookies.get("userSecret")!.value !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD && request.cookies.get("userSecret")!.value !== process.env.NEXT_PUBLIC_USER_PASSWORD)) {
-    return NextResponse.json({ message: "Access denied", status: 403 }, { status: 403 });
-  }
+    return false;
+  } else return true;
 }
 
-export async function catchAdminAuth(request: NextRequest) {
+export async function isAdminAuth(request: NextRequest): Promise<boolean> {
   if (!request.cookies.get("userSecret") || (request.cookies.get("userSecret")!.value !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD)) {
-    return NextResponse.json({ message: "Access denied", status: 403 }, { status: 403 });
-  }
+    return false;
+  } else return true;
+}
+
+export async function sendAccessDenied() {
+  return NextResponse.json({ message: "Access denied", status: 403 }, { status: 403 });
 }

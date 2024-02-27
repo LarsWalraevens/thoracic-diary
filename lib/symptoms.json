@@ -1,68 +1,94 @@
 {
     "symptoms": [
         {
-            "label": "Nek / schouderpijn",
-            "description": "Pain in the neck and shoulder, often radiating to the arm.",
+            "id": "4f4e6f16-9cd4-422d-88db-bc8ad779e057",
+            "label": "Nek / Schouderpijn",
+            "description": "Aanhoudende pijn in de nek en schouders, vaak uitstralend naar de borst.",
+            "solution": "Masseer regelmatig je nek, schouders en bovenste trapeziusspier. Gebruik een massagebal tegen een kleine rand om strakke weefsels te rekken. Integreer dagelijkse nek- en schouderstretches in je routine.",
             "value": "pijn"
         },
         {
+            "id": "5d1393c7-862c-4c46-9e64-3cb4e2c5578e",
             "label": "Stijfheid",
-            "description": "Stiffness somewhere in the body.",
-            "value": "stijf"
+            "description": "Gevoel van stijfheid op verschillende plaatsen in het lichaam, waardoor de bewegingsvrijheid beperkt is.",
+            "solution": "Bestrijd stijfheid met een combinatie van gerichte oefeningen en regelmatig strekken. Zorg voor een goede houding tijdens werk en activiteiten.",
+            "value": "stijfheid"
         },
         {
+            "id": "e98a41cc-af3b-429b-b862-5b5645757b98",
             "label": "Voos gevoel",
-            "description": "Numby or dirty feeling, described like ants are running through the skin.",
+            "description": "Een gevoel van verdoving of tinteling, vaak beschreven alsof er mieren onder de huid lopen, voornamelijk in de armen of handen.",
+            "solution": "Verhoog de bloedcirculatie door regelmatig je handen en armen te bewegen. Oefen strekoefeningen uit voor de nek en schouders om spanning te verminderen.",
             "value": "voosheid"
         },
         {
+            "id": "a799fadc-5c85-41c0-a5b9-ecf1a4a91b42",
             "label": "Stress",
-            "description": "Feeling of stress",
+            "description": "Ervaar van stress, wat TOS-symptomen kan verergeren.",
+            "solution": "Oefen diepe en langzame ademhalingstechnieken om stress te beheersen. Overweeg meditatie- en mindfulness-oefeningen om de geest te kalmeren.",
             "value": "stress"
         },
         {
+            "id": "52a0db2d-8c8a-4f10-9f8e-e4d165c3e18d",
             "label": "Tintelingen",
-            "description": "Sensation of tingling or 'pins and needles' in the arm or hand.",
+            "description": "Sensatie van tintelingen in de arm of hand.",
+            "solution": "Beweging en stretchen kunnen helpen om de druk op zenuwen te verminderen. Overweeg ergonomische aanpassingen aan je werkplek.",
             "value": "tintelingen"
         },
         {
+            "id": "2f536ac3-e7c3-4b3a-9c9f-e8f7262d69a3",
             "label": "Prikkelend gevoel",
-            "description": "Pricky feeling, often in the arm.",
+            "description": "Een subtiel prikkelend gevoel, alsof er naalden in de arm prikken.",
+            "solution": "Verbeter de doorbloeding door regelmatig van houding te veranderen en kleine oefeningen te doen. Zorg voor een ergonomische muis en toetsenbord.",
             "value": "prikkels"
         },
         {
+            "id": "4a3f0641-92f8-4b51-a4fe-7751e0fe2952",
             "label": "Steken",
-            "description": "Pierced feeling, mostly in arms or shoulders.",
+            "description": "Episodes van een stekend of doorborend gevoel, vaak in de armen of schouders.",
+            "solution": "Verminder de frequentie van steken door regelmatig te pauzeren en stretchoefeningen te doen. Overweeg een consult met een fysiotherapeut.",
             "value": "steken"
         },
         {
+            "id": "7eab87b1-58c2-48df-8779-3f040ef9d839",
             "label": "Brandend gevoel",
-            "description": "Firy feeling, mostly in shoulder or chest.",
+            "description": "Een vurig of brandend gevoel, meestal ervaren in de nek of borst.",
+            "solution": "Verlicht het brandende gevoel door regelmatig te stretchen en de betrokken spieren te masseren. Let op je houding om symptomen niet te verergeren.",
             "value": "branden"
         },
         {
+            "id": "7d8e38c4-408b-41f1-951d-0b73ee8f1e3b",
             "label": "Zwakte",
-            "description": "Muscle weakness in the affected arm, leading to difficulty in certain activities.",
+            "description": "Zwakte in de spieren van de getroffen arm, wat leidt tot moeite bij bepaalde activiteiten.",
+            "solution": "Versterk de spieren met gerichte oefeningen. Raadpleeg een fysiotherapeut voor een aangepast trainingsprogramma.",
             "value": "zwakte"
         },
         {
+            "id": "e35e6b63-06a0-439e-b944-c93f2e4d33aa",
             "label": "Koude handen",
-            "description": "A sensation of cold in the fingers or hands due to reduced blood circulation.",
+            "description": "Sensatie van kou in de vingers of handen als gevolg van verminderde bloedcirculatie.",
+            "solution": "Warm je handen op door ze te openen en te sluiten tot vuisten. Integreer stretchoefeningen voor handen, armen en schouders. Zorg voor regelmatige beweging en bloedcirculatie.",
             "value": "kou"
         },
         {
+            "id": "a64d41c5-5af2-4d14-88c4-2c1bfe90b95c",
             "label": "Zware schouders",
-            "description": "Heavy shoulders, mostly after a long day.",
+            "description": "Gevoel van zwaarte in de schouders, vooral na een lange dag.",
+            "solution": "Voorkom zware schouders door regelmatig pauzes te nemen en stretchoefeningen te doen. Zorg voor een ergonomische werkplek.",
             "value": "zware schouders"
         },
         {
+            "id": "0866d9d8-0d17-4897-a80b-1b9e06c2b04e",
             "label": "Coördinatieverlies",
-            "description": "Difficulty in coordinating movements, especially fine motor skills.",
+            "description": "Moeite met het coördineren van bewegingen, vooral fijne motorische vaardigheden.",
+            "solution": "Verbeter de coördinatie met specifieke oefeningen. Overweeg ergotherapie voor individueel advies.",
             "value": "coördinatie"
         },
         {
+            "id": "beb8a540-7d4b-45d0-a41e-7fcd5b062b68",
             "label": "Armvermoeidheid",
-            "description": "Quick onset of fatigue in the arm during activities or sustained positions.",
+            "description": "Snelle vermoeidheid van de arm tijdens activiteiten of langdurige posities.",
+            "solution": "Beheers armvermoeidheid door activiteiten af te wisselen en regelmatig te pauzeren. Consulteer een fysiotherapeut voor gerichte training.",
             "value": "vermoeidheid"
         }
     ]

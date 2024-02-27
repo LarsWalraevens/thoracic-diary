@@ -30,7 +30,7 @@ const Post = React.forwardRef<HTMLDivElement, PostProps>(
                 {...props}
             >
                 <Label
-                    className="flex flex-row items-end mb-2 mx-2 font-normal italic text-[12px] text-gray-400"
+                    className="flex flex-row items-end mb-2 mx-1 font-normal italic text-[12px] text-gray-400"
                     htmlFor="message"
                 >
                     {
@@ -48,7 +48,7 @@ const Post = React.forwardRef<HTMLDivElement, PostProps>(
                     }
                 </Label>
                 <p
-                    className="rounded-md border border-gray-600 bg-zinc-900 whitespace-pre-line p-3"
+                    className="rounded-md border border-gray-700/80 bg-zinc-900 whitespace-pre-line p-3"
                 >
                     {
                         props.text

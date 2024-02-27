@@ -16,8 +16,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Switch } from "../ui/switch";
 import { Textarea } from "../ui/textarea";
-import { TimePicker } from "../ui/time-picker";
 import { DateTimePicker } from "../ui/date-time-picker";
+import dayjs from "dayjs";
+import "dayjs/locale/nl-be"
+dayjs.locale('nl-be')
 
 
 export default function AddPost() {
@@ -74,7 +76,7 @@ export default function AddPost() {
             type: "post",
             tags: [],
             isprivate: false,
-            date: new Date()
+            date: dayjs().locale('nl-be').toDate()
         },
     });
 
@@ -213,23 +215,23 @@ export default function AddPost() {
                                                 <PopoverTrigger><p className="hover:bg-white hover:text-black border border-gray-400/40 px-2 py-1 rounded text-[14px] min-w-[200px]">See available tags {form.getValues("tags") && form.getValues("tags").length > 0 ? `(${form.getValues("tags").length})` : ""}</p></PopoverTrigger>
                                                 <PopoverContent>
                                                     {
-                                                        symptoms && symptoms.symptoms && symptoms.symptoms.length > 0 ? symptoms.symptoms.map((item: { label: string; value: string, description: string }, i: number) => {
+                                                        symptoms && symptoms.symptoms && symptoms.symptoms.length > 0 ? symptoms.symptoms.map((item: { label: string; value: string, description: string, id: string }, i: number) => {
                                                             return <Fragment key={i}>
                                                                 <div title={item.description} className="flex items-center space-x-2 my-2">
                                                                     <Checkbox
-                                                                        defaultChecked={!form.getValues("tags") ? false : form.getValues("tags").includes(item.value as string)}
-                                                                        value={item.value}
+                                                                        defaultChecked={!form.getValues("tags") ? false : form.getValues("tags").includes(item.id as string)}
+                                                                        value={item.id}
                                                                         onCheckedChange={(checked) => {
-                                                                            const filteredItems: Array<string> = form.getValues("tags").filter((val: any) => val !== item.value);
+                                                                            const filteredItems: Array<string> = form.getValues("tags").filter((val: any) => val !== item.id);
                                                                             if (checked) {
-                                                                                field.onChange([...filteredItems, (item.value as string)]);
+                                                                                field.onChange([...filteredItems, (item.id as string)]);
                                                                             } else {
                                                                                 field.onChange([...filteredItems]);
                                                                             }
                                                                         }}
-                                                                        id={item.value} />
+                                                                        id={item.id} />
                                                                     <label
-                                                                        htmlFor={item.value}
+                                                                        htmlFor={item.id}
                                                                         className="text-sm cursor-pointer leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                                                     >
                                                                         {item.label}

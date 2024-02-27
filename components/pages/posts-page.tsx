@@ -12,6 +12,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Skeleton } from "../ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 import dayjs from "dayjs";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { HelpCircle } from "lucide-react";
 const PageLayout = dynamic(() => import("@/components/layouts/page-layout"), { ssr: false });
 
 export const postsAtom = atom<MyPost[]>([]);
@@ -86,21 +88,49 @@ export default function PostsPage() {
                                                             // Map through the tags of the current post and render badges with tooltips
                                                             post.tags && (post.tags as unknown as string).split(",").map((tag: string, i: number) => {
                                                                 // Find tag data from 'symptoms' based on the tag value
-                                                                const tagData = symptoms.symptoms.filter(symptom => symptom.value === tag).length > 0 ? symptoms.symptoms.filter(symptom => symptom.value === tag)[0] : undefined;
+                                                                const tagData = symptoms.symptoms.filter(symptom => symptom.value === tag).length > 0 ?
+                                                                    symptoms.symptoms.filter(symptom => symptom.value === tag)[0] :
+                                                                    symptoms.symptoms.filter(symptom => symptom.id === tag).length > 0 ?
+                                                                        symptoms.symptoms.filter(symptom => symptom.id === tag)[0] :
+                                                                        undefined;
                                                                 // If tag data is not found, return null, otherwise render a tooltip with badge
                                                                 if (!tagData) return null;
-                                                                return <TooltipProvider key={i}>
-                                                                    <Tooltip>
-                                                                        <TooltipTrigger>
-                                                                            <Badge variant="secondary" key={i}>
+                                                                return <Fragment key={i}>
+                                                                    <Popover>
+                                                                        <PopoverTrigger>
+                                                                            <Badge variant="secondary" className="pointer" key={i}>
                                                                                 {tagData?.label.toLowerCase() || tag}
                                                                             </Badge>
-                                                                        </TooltipTrigger>
-                                                                        <TooltipContent>
-                                                                            <p>{tagData.description}</p>
-                                                                        </TooltipContent>
-                                                                    </Tooltip>
-                                                                </TooltipProvider>
+                                                                        </PopoverTrigger>
+                                                                        <PopoverContent className="lg:min-w-[500px]">
+                                                                            <p className="font-bold  block text-lg mb-2">{tagData.label}</p>
+                                                                            <p className="mb-3">{tagData.description}</p>
+                                                                            {
+                                                                                tagData.solution && <>
+                                                                                    <p className="font-bold mb-1">
+                                                                                        <HelpCircle size={18} className="inline-block mr-1" />
+                                                                                        Help:
+                                                                                    </p>
+                                                                                    <p >{tagData.solution}</p>
+                                                                                </>
+                                                                            }
+
+                                                                        </PopoverContent>
+                                                                    </Popover>
+
+                                                                </Fragment>
+                                                                //  <TooltipProvider key={i}>
+                                                                //     <Tooltip>
+                                                                //         <TooltipTrigger>
+                                                                //             <Badge variant="secondary" key={i}>
+                                                                //                 {tagData?.label.toLowerCase() || tag}
+                                                                //             </Badge>
+                                                                //         </TooltipTrigger>
+                                                                //         <TooltipContent>
+                                                                //             <p>{tagData.description}</p>
+                                                                //         </TooltipContent>
+                                                                //     </Tooltip>
+                                                                // </TooltipProvider>
                                                             })
                                                         }
                                                     </div>
