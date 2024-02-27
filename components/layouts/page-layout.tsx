@@ -1,12 +1,14 @@
+"use client"
+
 import { isLoggedInAtom } from "@/lib/states";
 import cookie from "cookie";
+import dayjs from "dayjs";
+import "dayjs/locale/nl-be";
 import { useAtom } from "jotai";
+import { Moon, SunDim } from "lucide-react";
+import { useState } from "react";
 import AddPost from "../modals/add-post";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
-import dayjs from "dayjs";
-import "dayjs/locale/nl-be"
-import { useEffect, useState } from "react";
-import { Moon, Sun, SunDim } from "lucide-react";
 dayjs.locale('nl-be')
 
 export default function PageLayout(props: {
@@ -35,15 +37,20 @@ export default function PageLayout(props: {
         prevScrollpos = currentScrollPos;
     }
 
-    useEffect(() => {
+
+    function toggleDarkMode() {
+        const htmlElement = document.getElementsByTagName("html");
+        if (!htmlElement) return;
         const htmlEle = document.getElementsByTagName("html")[0];
         if (!htmlEle) return;
-        if (isDarkMode && !htmlEle.classList.contains("dark")) {
+        const newMode = !isDarkMode;
+        setIsDarkMode(newMode);
+        if (newMode && !htmlEle.classList.contains("dark")) {
             htmlEle.classList.add("dark");
         } else {
             htmlEle.classList.remove("dark");
         }
-    }, [isDarkMode])
+    }
 
     return <>
         <header className={`w-full relative h-20 duration-1000  z-10`}>
@@ -80,7 +87,8 @@ export default function PageLayout(props: {
                             }} className="font-medium hover:text-blue-500">Logout</button>
                         }
                         {
-                            isDarkMode ? <SunDim className="hover:text-blue-500 cursor-pointer" onClick={() => setIsDarkMode(!isDarkMode)} /> : <Moon className="hover:text-blue-500 cursor-pointer" onClick={() => setIsDarkMode(!isDarkMode)} />
+                            isDarkMode ? <SunDim className="hover:text-blue-500 cursor-pointer" onClick={() => toggleDarkMode()} /> :
+                                <Moon className="hover:text-blue-500 cursor-pointer" onClick={() => toggleDarkMode()} />
                         }
                     </div>
                 </div>
