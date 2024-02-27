@@ -147,7 +147,7 @@ export default function PostsPage() {
                                                                                                 <HelpCircle size={18} className="inline-block mr-1" />
                                                                                                 Help:
                                                                                             </p>
-                                                                                            <p className="text-gray-300">{tagData.solution}</p>
+                                                                                            <p className="dark:text-gray-300">{tagData.solution}</p>
                                                                                         </div>
                                                                                     }
                                                                                 </DrawerContent>
