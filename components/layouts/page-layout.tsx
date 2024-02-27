@@ -5,7 +5,7 @@ import cookie from "cookie";
 import dayjs from "dayjs";
 import "dayjs/locale/nl-be";
 import { useAtom } from "jotai";
-import { Moon, SunDim } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useState } from "react";
 import AddPost from "../modals/add-post";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
@@ -87,7 +87,7 @@ export default function PageLayout(props: {
                             }} className="font-medium hover:text-blue-500">Logout</button>
                         }
                         {
-                            isDarkMode ? <SunDim className="hover:text-blue-500 cursor-pointer" onClick={() => toggleDarkMode()} /> :
+                            isDarkMode ? <Sun className="hover:text-blue-500 cursor-pointer" onClick={() => toggleDarkMode()} /> :
                                 <Moon className="hover:text-blue-500 cursor-pointer" onClick={() => toggleDarkMode()} />
                         }
                     </div>
