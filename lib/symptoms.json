@@ -4,7 +4,7 @@
             "id": "4f4e6f16-9cd4-422d-88db-bc8ad779e057",
             "label": "Nek / Schouderpijn",
             "description": "Aanhoudende pijn in de nek en schouders, vaak uitstralend naar de borst.",
-            "solution": "Masseer regelmatig je nek, schouders en bovenste trapeziusspier. Gebruik een massagebal tegen een kleine rand om strakke weefsels te rekken. Integreer dagelijkse nek- en schouderstretches in je routine.",
+            "solution": "Masseer regelmatig je nek, schouders en bovenste trapeziusspier. Gebruik een massagebal om strakke weefsels te rekken. Ook kan je gebruik maken van gel warmtekussen of een warme pittenkussen.",
             "value": "pijn"
         },
         {
@@ -18,7 +18,7 @@
             "id": "e98a41cc-af3b-429b-b862-5b5645757b98",
             "label": "Voos gevoel",
             "description": "Een gevoel van verdoving of tinteling, vaak beschreven alsof er mieren onder de huid lopen, voornamelijk in de armen of handen.",
-            "solution": "Verhoog de bloedcirculatie door regelmatig je handen en armen te bewegen. Oefen strekoefeningen uit voor de nek en schouders om spanning te verminderen.",
+            "solution": "Verhoog de bloedcirculatie door regelmatig je handen en armen te bewegen. Probeer de plekken zeker te masseren met je handen of gebruik een massagebal om strakke weefsels te rekken. Oefen strekoefeningen uit voor de nek en schouders om spanning te verminderen.",
             "value": "voosheid"
         },
         {
@@ -38,15 +38,15 @@
         {
             "id": "2f536ac3-e7c3-4b3a-9c9f-e8f7262d69a3",
             "label": "Prikkelend gevoel",
-            "description": "Een subtiel prikkelend gevoel, alsof er naalden in de arm prikken.",
-            "solution": "Verbeter de doorbloeding door regelmatig van houding te veranderen en kleine oefeningen te doen. Zorg voor een ergonomische muis en toetsenbord.",
+            "description": "Een subtiel prikkelend gevoel, alsof er kleine naaldjes in de arm prikken. Al niet te extreem zoals steken maar subtieler.",
+            "solution": "Verbeter de doorbloeding door regelmatig van houding te veranderen en kleine oefeningen te doen. Doe zeker ook eens stretch oefeningen en beweeg meer.",
             "value": "prikkels"
         },
         {
             "id": "4a3f0641-92f8-4b51-a4fe-7751e0fe2952",
             "label": "Steken",
             "description": "Episodes van een stekend of doorborend gevoel, vaak in de armen of schouders.",
-            "solution": "Verminder de frequentie van steken door regelmatig te pauzeren en stretchoefeningen te doen. Overweeg een consult met een fysiotherapeut.",
+            "solution": "Verminder de frequentie van steken door regelmatig te pauzeren en stretchoefeningen te doen.",
             "value": "steken"
         },
         {
@@ -74,22 +74,8 @@
             "id": "a64d41c5-5af2-4d14-88c4-2c1bfe90b95c",
             "label": "Zware schouders",
             "description": "Gevoel van zwaarte in de schouders, vooral na een lange dag.",
-            "solution": "Voorkom zware schouders door regelmatig pauzes te nemen en stretchoefeningen te doen. Zorg voor een ergonomische werkplek.",
+            "solution": "Voorkom zware schouders door regelmatig pauzes te nemen en stretchoefeningen te doen. Bekijk ook beter je postuur.",
             "value": "zware schouders"
-        },
-        {
-            "id": "0866d9d8-0d17-4897-a80b-1b9e06c2b04e",
-            "label": "Coördinatieverlies",
-            "description": "Moeite met het coördineren van bewegingen, vooral fijne motorische vaardigheden.",
-            "solution": "Verbeter de coördinatie met specifieke oefeningen. Overweeg ergotherapie voor individueel advies.",
-            "value": "coördinatie"
-        },
-        {
-            "id": "beb8a540-7d4b-45d0-a41e-7fcd5b062b68",
-            "label": "Armvermoeidheid",
-            "description": "Snelle vermoeidheid van de arm tijdens activiteiten of langdurige posities.",
-            "solution": "Beheers armvermoeidheid door activiteiten af te wisselen en regelmatig te pauzeren. Consulteer een fysiotherapeut voor gerichte training.",
-            "value": "vermoeidheid"
         }
     ]
 }

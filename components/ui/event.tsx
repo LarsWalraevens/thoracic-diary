@@ -31,7 +31,7 @@ const Event = React.forwardRef<HTMLDivElement, EventProps>(
             >
 
                 <Label
-                    className="flex flex-row items-end mb-2 mx-1 font-normal italic text-[12px] text-gray-400"
+                    className="flex flex-row items-end mb-2 mx-1 font-normal italic text-[12px] dark:text-gray-400 text-gray-600"
                     htmlFor="message"
                 >
                     {
@@ -48,7 +48,7 @@ const Event = React.forwardRef<HTMLDivElement, EventProps>(
                         </div>
                     }
                 </Label>
-                <div className="flex items-start flex-row gap-4 border-l-4 border-l-sky-600 border-r border-t border-b border-r-sky-900/50 border-b-sky-900/50 border-t-sky-900/50 bg-slate-900 full p-3">
+                <div className="flex items-start flex-row gap-4 border-l-4 border-l-sky-600 border-r border-t border-b border-r-sky-900/50 border-b-sky-900/50 border-t-sky-900/50 dark:bg-slate-900 bg-sky-200 dark:text-white text-black full p-3">
 
                     <span title="Important event" className="max-md:hidden">
                         <AlertTriangle size={25} className="text-sky-600" />

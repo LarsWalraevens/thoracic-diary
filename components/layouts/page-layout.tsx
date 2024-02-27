@@ -5,7 +5,8 @@ import AddPost from "../modals/add-post";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import dayjs from "dayjs";
 import "dayjs/locale/nl-be"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Moon, Sun, SunDim } from "lucide-react";
 dayjs.locale('nl-be')
 
 export default function PageLayout(props: {
@@ -14,6 +15,8 @@ export default function PageLayout(props: {
 }) {
     const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
     const [isTopPage, setIsTopPage] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(true);
+
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
         if (!isLoggedIn) return
@@ -32,12 +35,22 @@ export default function PageLayout(props: {
         prevScrollpos = currentScrollPos;
     }
 
+    useEffect(() => {
+        const htmlEle = document.getElementsByTagName("html")[0];
+        if (!htmlEle) return;
+        if (isDarkMode && !htmlEle.classList.contains("dark")) {
+            htmlEle.classList.add("dark");
+        } else {
+            htmlEle.classList.remove("dark");
+        }
+    }, [isDarkMode])
+
     return <>
         <header className={`w-full relative h-20 duration-1000  z-10`}>
-            <div className={`w-full h-20 ${isTopPage ? '' : isLoggedIn ? ' fixed  !bg-zinc-950 border-b-slate-900 border-b' : ''}`}>
+            <div className={`w-full h-20 ${isTopPage ? '' : isLoggedIn ? ' fixed  dark:bg-zinc-950 bg-white  daro:border-b-slate-900 border-b' : ''}`}>
                 <div className="mx-auto max-w-[1200px] h-full px-4 flex items-center justify-between">
                     <p className="mb-0 font-bold flex flex-row items-center text-lg">
-                        <span title="Logo" className="scale-125">{logoSvg}</span>
+                        <span title="Logo" className="scale-125 p-3 bg-slate-950 rounded-full">{logoSvg}</span>
                     </p>
                     <div className="flex items-center justify-end flex-row gap-4 w-full h-full">
                         {
@@ -51,8 +64,11 @@ export default function PageLayout(props: {
                             </DialogTrigger>
                             <DialogContent className="sm:max-w-[725px]">
                                 <DialogHeader>
-                                    <DialogTitle className="text-left">Thoracic outlet syndrome diary</DialogTitle>
-                                </DialogHeader> <p>This is a diary where I will post updates on how I feel during the day when struggling with symptoms of thoracic outlet syndrome. So I can focus on what triggers it and to track the journey more effectively. This diary is meant for personal use only.
+                                    <DialogTitle className="text-left">Help - wat is dit?</DialogTitle>
+                                </DialogHeader>
+                                <p>
+                                    {/* This is a diary where I will post updates on how I feel during the day when struggling with symptoms of thoracic outlet syndrome. So I can focus on what triggers it and to track the journey more effectively. This diary is meant for personal use only. */}
+                                    Dit is een dagboek waar ik updates post wanneer ik last heb van symptonen van thoracic outlet symdroom tijdens de dag. Zodat ik meer overzicht krijg  en meer kan focussen op welke triggers er zijn. Dit dagboek is voor persoonlijk gebruik.
                                 </p>
                             </DialogContent>
                         </Dialog>
@@ -62,6 +78,9 @@ export default function PageLayout(props: {
                                 setIsLoggedIn(false);
                                 window.document.cookie = cookie.serialize("userSecret", "", { path: "/", secure: true, maxAge: 0 });
                             }} className="font-medium hover:text-blue-500">Logout</button>
+                        }
+                        {
+                            isDarkMode ? <SunDim className="hover:text-blue-500 cursor-pointer" onClick={() => setIsDarkMode(!isDarkMode)} /> : <Moon className="hover:text-blue-500 cursor-pointer" onClick={() => setIsDarkMode(!isDarkMode)} />
                         }
                     </div>
                 </div>

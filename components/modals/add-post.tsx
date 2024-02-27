@@ -219,7 +219,7 @@ export default function AddPost() {
                                                     {
                                                         symptoms && symptoms.symptoms && symptoms.symptoms.length > 0 ? symptoms.symptoms.map((item: { label: string; value: string, description: string, id: string }, i: number) => {
                                                             return <Fragment key={i}>
-                                                                <div title={item.description} className="flex items-center space-x-2 my-2">
+                                                                <div title={item.description} className="flex items-center space-x-2 my-2 max-md:my-3">
                                                                     <Checkbox
                                                                         defaultChecked={!form.getValues("tags") ? false : form.getValues("tags").includes(item.id as string)}
                                                                         value={item.id}

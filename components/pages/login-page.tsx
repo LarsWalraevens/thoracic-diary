@@ -33,7 +33,7 @@ export default function LoginPage() {
         }
 
         if (isValidPass) document.cookie = cookie.serialize("userSecret", password, { path: "/", secure: true, maxAge: 60 * 60 * 24 * 30 });
-        else form.setError("password", { message: "Invalid password" });
+        else form.setError("password", { message: "Fout wachtwoord" });
     }
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function LoginPage() {
                 <Card className="lg:max-w-[700px] lg:w-[500px] w-full max-lg:border-none max-md:[&_>*]:px-0">
                     <CardHeader>
                         <CardTitle className="mb-2">Log in</CardTitle>
-                        <CardDescription>Please login with a valid password to gain access</CardDescription>
+                        <CardDescription>Vul het wachtwoord in om toegang te krijgen</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Form
@@ -67,7 +67,7 @@ export default function LoginPage() {
                                     control={form.control}
                                     render={({ field }) => (
                                         <FormItem className="pb-2">
-                                            <FormLabel className="required" >Fill in the password:</FormLabel>
+                                            <FormLabel className="required" >Vul het wachtwoord in:</FormLabel>
                                             <FormControl>
                                                 <Input required type="password" placeholder="Password" {...field} />
                                             </FormControl>
@@ -93,5 +93,5 @@ export default function LoginPage() {
 }
 
 const formSchema = z.object({
-    password: z.string().min(3, { message: "Fill this in" }),
+    password: z.string().min(3, { message: "Vul dit in" }),
 })
