@@ -27,8 +27,8 @@ export async function POST(request: NextRequest) {
             // Extract properties from the parsed request body
             const { text, isprivate, type, tags } = requestBody;
 
-            // const date = dayjs().format('YYYY-MM-DD HH:mm:ss');
-            const date = dayjs(requestBody.date || new Date()).locale('nl-be').format('YYYY-MM-DD HH:mm:ss');
+            const date = dayjs().locale('nl-be').format();
+            // const date = dayjs(requestBody.date || new Date()).locale('nl-be').format('YYYY-MM-DD HH:mm:ss');
 
             // Use template literals directly
             const myQuery = sql`INSERT INTO thoracic_posts (Text, Date, Isprivate, Type, Tags) VALUES (${text}, ${date}, ${isprivate || false}, ${type}, ${tags})`;
