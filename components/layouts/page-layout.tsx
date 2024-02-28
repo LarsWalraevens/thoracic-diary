@@ -66,10 +66,10 @@ export default function PageLayout(props: {
 
     return <>
         <header className={`w-full relative h-20 duration-1000  z-10`}>
-            <div className={`w-full h-20 ${isTopPage ? '' : isLoggedIn ? ' fixed  dark:bg-zinc-950 bg-white  daro:border-b-slate-900 border-b' : ''}`}>
+            <div className={`w-full h-20 ${isTopPage ? '' : isLoggedIn ? ' fixed  dark:bg-zinc-950 bg-white  dark:border-b-slate-900 border-b' : ''}`}>
                 <div className="mx-auto max-w-[1200px] h-full px-4 flex items-center justify-between">
                     <p className="mb-0 font-bold flex flex-row items-center text-lg">
-                        <span title="Logo" className="scale-125 p-3 bg-slate-950 rounded-full">{logoSvg}</span>
+                        <span title="Logo" className="scale-125 p-3 bg-zinc-950 rounded-full">{logoSvg}</span>
                     </p>
                     <div className="flex items-center justify-end flex-row gap-4 w-full h-full">
                         {

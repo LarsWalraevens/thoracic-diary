@@ -119,7 +119,7 @@ export default function AddPost() {
                 form.setValue("type", selected.type);
                 form.setValue("tags", !selected.tags ? [] : Array.isArray(selected.tags) ? selected.tags : (selected.tags as unknown as string).split(","));
                 form.setValue("isprivate", selected.isprivate || false);
-                form.setValue("date", new Date(selected.date) || new Date());
+                form.setValue("date", dayjs(selected.date).toDate() || new Date());
                 setIsDialogOpen(true);
             }
         }
