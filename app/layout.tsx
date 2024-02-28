@@ -18,6 +18,9 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={"dark"}>
+      <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+      </head>
       <body className={inter.className}>
         <ReactQueryProvider>
           {children}

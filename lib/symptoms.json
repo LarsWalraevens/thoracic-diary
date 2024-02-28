@@ -11,14 +11,14 @@
             "id": "5d1393c7-862c-4c46-9e64-3cb4e2c5578e",
             "label": "Stijfheid",
             "description": "Gevoel van stijfheid op verschillende plaatsen in het lichaam, waardoor de bewegingsvrijheid beperkt is.",
-            "solution": "Bestrijd stijfheid met een combinatie van gerichte oefeningen en regelmatig strekken. Zorg voor een goede houding tijdens werk en activiteiten.",
+            "solution": "Bestrijd stijfheid met een combinatie van gerichte oefeningen en regelmatig strekken. Ook kan je gebruik maken van gel warmtekussen of een warme pittenkussen.",
             "value": "stijfheid"
         },
         {
             "id": "e98a41cc-af3b-429b-b862-5b5645757b98",
             "label": "Voos gevoel",
             "description": "Een gevoel van verdoving of tinteling, vaak beschreven alsof er mieren onder de huid lopen, voornamelijk in de armen of handen.",
-            "solution": "Verhoog de bloedcirculatie door regelmatig je handen en armen te bewegen. Probeer de plekken zeker te masseren met je handen of gebruik een massagebal om strakke weefsels te rekken. Oefen strekoefeningen uit voor de nek en schouders om spanning te verminderen.",
+            "solution": "Verhoog de bloedcirculatie door regelmatig je handen en armen te bewegen. Probeer de plekken te masseren met je handen of gebruik een massagebal om strakke weefsels te rekken. Oefen strekoefeningen uit voor de nek en schouders om spanning te verminderen.",
             "value": "voosheid"
         },
         {
@@ -32,7 +32,7 @@
             "id": "52a0db2d-8c8a-4f10-9f8e-e4d165c3e18d",
             "label": "Tintelingen",
             "description": "Sensatie van tintelingen in de arm of hand.",
-            "solution": "Beweging en stretchen kunnen helpen om de druk op zenuwen te verminderen. Overweeg ergonomische aanpassingen aan je werkplek.",
+            "solution": "Beweging en stretchen kunnen helpen om de druk op zenuwen te verminderen. Zorg voor een goede houding tijdens werk en activiteiten.",
             "value": "tintelingen"
         },
         {

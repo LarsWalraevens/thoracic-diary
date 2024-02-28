@@ -54,7 +54,7 @@ const Event = React.forwardRef<HTMLDivElement, EventProps>(
                         <AlertTriangle size={25} className="text-sky-600" />
                     </span>
                     <div className="">
-                        <p className="mb-0">
+                        <p className="mb-0 whitespace-pre-line">
                             {
                                 props.text
                             }

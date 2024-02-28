@@ -1,12 +1,10 @@
-"use client"
-
 import { isLoggedInAtom } from "@/lib/states";
 import cookie from "cookie";
 import dayjs from "dayjs";
 import "dayjs/locale/nl-be";
 import { useAtom } from "jotai";
 import { Moon, Sun } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddPost from "../modals/add-post";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 dayjs.locale('nl-be')
@@ -15,10 +13,10 @@ export default function PageLayout(props: {
     children: React.ReactNode;
     className?: string;
 }) {
+    const cookies = cookie.parse(document.cookie);
     const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
     const [isTopPage, setIsTopPage] = useState(true);
-    const [isDarkMode, setIsDarkMode] = useState(true);
-
+    const [isDarkMode, setIsDarkMode] = useState(cookies.darkLightMode !== undefined ? cookies.darkLightMode === "dark" ? true : false : true);
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
         if (!isLoggedIn) return
@@ -37,6 +35,19 @@ export default function PageLayout(props: {
         prevScrollpos = currentScrollPos;
     }
 
+    useEffect(() => {
+        if (!cookies.darkLightMode) return
+        const htmlElement = document.getElementsByTagName("html");
+        if (!htmlElement) return;
+        const htmlEle = document.getElementsByTagName("html")[0];
+        if (!htmlEle) return;
+        const myIsDarkMode = cookies.darkLightMode === "dark" ? true : false
+        if (myIsDarkMode && !htmlEle.classList.contains("dark")) {
+            htmlEle.classList.add("dark");
+        } else {
+            htmlEle.classList.remove("dark");
+        }
+    }, []);
 
     function toggleDarkMode() {
         const htmlElement = document.getElementsByTagName("html");
@@ -44,6 +55,7 @@ export default function PageLayout(props: {
         const htmlEle = document.getElementsByTagName("html")[0];
         if (!htmlEle) return;
         const newMode = !isDarkMode;
+        document.cookie = cookie.serialize("darkLightMode", newMode === true ? "dark" : "light", { path: "/", maxAge: 60 * 60 * 24 * 30 });
         setIsDarkMode(newMode);
         if (newMode && !htmlEle.classList.contains("dark")) {
             htmlEle.classList.add("dark");
@@ -94,7 +106,7 @@ export default function PageLayout(props: {
                 </div>
             </div>
         </header >
-        <main className={`mx-auto max-w-[1200px] z-[1] relative px-4 my-7 ${props.className || ''}`}>
+        <main className={`mx-auto max-w-[1200px] z-[1] relative px-4 my-7 max-lg:my-5 ${props.className || ''}`}>
             {props.children}
         </main>
     </>
