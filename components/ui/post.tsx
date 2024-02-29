@@ -5,6 +5,9 @@ import * as React from "react";
 import { Label } from "./label";
 import { useAtom } from "jotai";
 import { isLoggedInAtom } from "@/lib/states";
+import "dayjs/locale/nl-be"
+dayjs.locale('nl-be')
+
 
 export interface PostProps
     extends React.HTMLAttributes<HTMLDivElement> {
@@ -37,7 +40,7 @@ const Post = React.forwardRef<HTMLDivElement, PostProps>(
                         props.isprivate && <Lock size={16} className="mr-2" />
                     }
                     <span>
-                        {dayjs(props.date).format("dddd HH:mmu - DD MMMM YYYY")}
+                        {dayjs(props.date).locale('nl-be').format("dddd HH:mmu - DD MMMM YYYY")}
                     </span>
                     {
                         isLoggedIn === "admin" && <div className="flex flex-row justify-center items-center gap-2 mx-2">

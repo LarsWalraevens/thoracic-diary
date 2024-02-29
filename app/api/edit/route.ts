@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
             // Extract properties from the parsed request body
             const { text, isprivate, type, tags } = requestBody;
 
-            const date = dayjs(requestBody.date || new Date()).format('YYYY-MM-DD HH:mm:ss');
+            const date = dayjs(requestBody.date).locale('nl-be').format();
 
             // Use template literals directly
             const myQuery = sql`UPDATE thoracic_posts SET text = ${text}, isprivate = ${isprivate || false}, type = ${type}, date = ${date}, tags = ${tags} WHERE id = ${requestBody.id}`;

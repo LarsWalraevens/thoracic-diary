@@ -38,7 +38,7 @@ const Event = React.forwardRef<HTMLDivElement, EventProps>(
                         props.isprivate && <Lock size={16} className="mr-2" />
                     }
                     <span>
-                        {dayjs(props.date).format("dddd HH:mmu - DD MMMM YYYY")}
+                        {dayjs(props.date).locale('nl-be').format("dddd HH:mmu - DD MMMM YYYY")}
                     </span>
                     {
                         isLoggedIn === "admin" && <div className="flex flex-row justify-center items-center gap-2 mx-2">
