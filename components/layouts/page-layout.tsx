@@ -36,7 +36,10 @@ export default function PageLayout(props: {
     }
 
     useEffect(() => {
-        if (!cookies.darkLightMode) return
+        if (!cookies.darkLightMode) {
+            document.cookie = cookie.serialize("darkLightMode", "dark", { path: "/", maxAge: 60 * 60 * 24 * 30 });
+            return
+        }
         const htmlElement = document.getElementsByTagName("html");
         if (!htmlElement) return;
         const htmlEle = document.getElementsByTagName("html")[0];

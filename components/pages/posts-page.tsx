@@ -68,7 +68,7 @@ export default function PostsPage() {
                                 // Perform the following operations if conditions are met
                                 Object.entries(
                                     // Sort the 'posts' array based on the 'date' property in descending order
-                                    posts.sort((a: MyPost, b: MyPost) => a.date > b.date ? -1 : 1)
+                                    posts.sort((a: MyPost, b: MyPost) => new Date(a.date) > new Date(b.date) ? -1 : 1)
                                         // Use 'reduce' to group the posts by month
                                         .reduce((acc: { [key: string]: MyPost[] }, post) => {
                                             if (isLoggedIn !== "admin" && post.isprivate) return acc
