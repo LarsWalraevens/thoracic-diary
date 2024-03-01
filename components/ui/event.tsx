@@ -43,8 +43,8 @@ const Event = React.forwardRef<HTMLDivElement, EventProps>(
                     {
                         isLoggedIn === "admin" && <div className="flex flex-row justify-center items-center gap-2 mx-2">
                             <span>|</span>
-                            <Edit2 className="hover:text-blue-700 cursor-pointer" size={16} onClick={() => props.onEdit(props.id)} />
-                            <Trash2 className="hover:text-red-700 cursor-pointer" size={16} onClick={() => confirm("Are you sure?") && props.onDelete(props.id)} />
+                            <Edit2 className="hover:text-blue-700 cursor-pointer max-md:mx-1 max-md:scale-[115%]" size={16} onClick={() => props.onEdit(props.id)} />
+                            <Trash2 className="hover:text-red-700 cursor-pointer max-md:mx-1 max-md:scale-[115%]" size={16} onClick={() => confirm("Are you sure?") && props.onDelete(props.id)} />
                         </div>
                     }
                 </Label>

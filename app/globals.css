@@ -77,10 +77,10 @@
   @apply bg-zinc-900;
   border-radius:10px 100px 100px 10px;
 }
- .dialog-scroll::-webkit-scrollbar-thumb {
+.dialog-scroll::-webkit-scrollbar-thumb {
   background: #888; 
   border-radius:10px ;
 }
 .dialog-scroll::-webkit-scrollbar-thumb:hover {
   background: #555; 
-} 
+}

@@ -2,6 +2,7 @@ import { ReactQueryProvider } from "@/lib/react-query-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <link rel="icon" type="image/x-icon" href="/favicon.svg" />
       </head>
       <body className={inter.className}>
+        <Toaster />
         <ReactQueryProvider>
           {children}
         </ReactQueryProvider>

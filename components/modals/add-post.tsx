@@ -1,7 +1,7 @@
 import { MyPost, postsAtom } from "@/components/pages/posts-page";
 import symptoms from "@/lib/symptoms.json";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { UseMutationResult, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
@@ -19,12 +19,13 @@ import { Textarea } from "../ui/textarea";
 import { DateTimePicker } from "../ui/date-time-picker";
 import dayjs from "dayjs";
 import "dayjs/locale/nl-be"
+import { toast } from "sonner";
 dayjs.locale('nl-be')
 
 
 export default function AddPost() {
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-    const [posts, setPosts] = useAtom(postsAtom);
+    const [posts, _] = useAtom(postsAtom);
     const queryClient = useQueryClient();
     const mutateNewPost = useMutation({
         mutationKey: ["newPost"],
@@ -43,7 +44,13 @@ export default function AddPost() {
         retry: false,
         onSettled: () => {
             queryClient.refetchQueries({ queryKey: ['getPosts'], type: 'active' })
-        }
+        },
+        onSuccess: () => {
+            form.reset();
+            setIsDialogOpen(false);
+            toast.success("Post created");
+        },
+        onError: () => toast.error("Error", { description: "Something went wrong while trying to add a post" })
     });
 
     const mutateEditPost = useMutation({
@@ -64,7 +71,14 @@ export default function AddPost() {
         retry: false,
         onSettled: () => {
             queryClient.refetchQueries({ queryKey: ['getPosts'], type: 'active' })
-        }
+        },
+        onSuccess: () => {
+            form.reset();
+            router.replace("/");
+            setIsDialogOpen(false);
+            toast.success("Post updated");
+        },
+        onError: () => toast.error("Error", { description: "Something went wrong while trying to edit a post" })
     });
 
     const searchParams = useSearchParams();
@@ -99,16 +113,7 @@ export default function AddPost() {
                 date: values.date
             });
         }
-
-        setIsDialogOpen(false);
-        form.reset();
-        router.replace("/");
     };
-
-    useEffect(() => {
-        if (searchParams.get("edit")) return
-        form.reset();
-    }, [isDialogOpen])
 
     useEffect(() => {
         if (searchParams.get("edit")) {
@@ -139,7 +144,7 @@ export default function AddPost() {
                 <DialogTrigger asChild>
                     <Button className="px-3 py-0" >Add post</Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[725px] lg:max-w-screen-lg overflow-y-auto max-h-screen dialog-scroll">
+                <DialogContent className="sm:max-w-[725px] lg:max-w-screen-lg overflow-y-auto max-h-screen max-md:min-h-screen dialog-scroll">
                     <DialogHeader>
                         <DialogTitle>New post</DialogTitle>
                     </DialogHeader>
@@ -266,7 +271,12 @@ export default function AddPost() {
 
                                 )}
                             />
-                            <Button disabled={mutateNewPost.isPending ? true : false} className="min-w-24" type="submit">Post</Button>
+                            <Button
+                                isLoading={mutateNewPost.isPending || mutateEditPost.isPending ? true : false}
+                                className="min-w-24"
+                                type="submit">
+                                Post
+                            </Button>
                         </form>
                     </Form>
                 </DialogContent>
