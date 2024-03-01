@@ -36,21 +36,20 @@ export default function PageLayout(props: {
     }
 
     useEffect(() => {
-        if (!cookies.darkLightMode) {
-            document.cookie = cookie.serialize("darkLightMode", "dark", { path: "/", maxAge: 60 * 60 * 24 * 30 });
-            return
-        }
-        const htmlElement = document.getElementsByTagName("html");
-        if (!htmlElement) return;
+        const htmlElements = document.getElementsByTagName("html");
+        if (!htmlElements) return;
         const htmlEle = document.getElementsByTagName("html")[0];
         if (!htmlEle) return;
-        const myIsDarkMode = cookies.darkLightMode === "dark" ? true : false
-        if (myIsDarkMode && !htmlEle.classList.contains("dark")) {
-            htmlEle.classList.add("dark");
+        const myIsDarkMode = cookies.darkLightMode === "dark"
+        if (myIsDarkMode) {
+            if (!htmlEle.classList.contains("dark")) htmlEle.classList.add("dark");
+            setIsDarkMode(true);
         } else {
             htmlEle.classList.remove("dark");
+            setIsDarkMode(false);
         }
     }, []);
+
 
     function toggleDarkMode() {
         const htmlElement = document.getElementsByTagName("html");
