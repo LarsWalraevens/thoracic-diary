@@ -144,7 +144,7 @@ export default function AddPost() {
                 <DialogTrigger asChild>
                     <Button className="px-3 py-0" >Add post</Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[725px] lg:max-w-screen-lg overflow-y-auto max-h-screen max-md:min-h-screen dialog-scroll">
+                <DialogContent className="sm:max-w-[725px] lg:max-w-screen-lg overflow-y-auto max-h-screen dialog-scroll">
                     <DialogHeader>
                         <DialogTitle>New post</DialogTitle>
                     </DialogHeader>
