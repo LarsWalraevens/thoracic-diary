@@ -33,7 +33,7 @@ export function DateTimePicker(props: {
                     {value ? dayjs(value).format("YYYY-MM-DD HH:mm:ss") : <span>Pick a date</span>}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
+            <PopoverContent className="w-auto p-0 max-h-[300px] overflow-y-auto dialog-scroll">
                 <Calendar
                     mode="single"
                     selected={value}

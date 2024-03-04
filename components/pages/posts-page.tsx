@@ -22,7 +22,7 @@ export const postsAtom = atom<MyPost[]>([]);
 export default function PostsPage() {
     const [posts, setPosts] = useAtom(postsAtom);
     const [isLoggedIn, _] = useAtom(isLoggedInAtom);
-    const [postsIndex, setPostsIndex] = useState<number>(10);
+    const [postsIndex, setPostsIndex] = useState<number>(30);
     const router = useRouter();
 
     const { isLoading, isError, refetch } = useQuery({
@@ -57,8 +57,8 @@ export default function PostsPage() {
 
                         <InfiniteScroll
                             className="overflow-y-hidden"
-                            dataLength={posts.length}
-                            next={() => setTimeout(() => setPostsIndex(postsIndex + 10), 50)}
+                            dataLength={posts.slice(0, postsIndex).length}
+                            next={() => setTimeout(() => setPostsIndex(postsIndex + 20), 100)}
                             hasMore={postsIndex <= posts.length}
                             loader={<div className="text-center mb-20 mt-8 flex justify-center w-full">
                                 <span className="scale-150"><LoadingSpinner /></span>
@@ -68,7 +68,7 @@ export default function PostsPage() {
                                 // Perform the following operations if conditions are met
                                 Object.entries(
                                     // Sort the 'posts' array based on the 'date' property in descending order
-                                    posts.sort((a: MyPost, b: MyPost) => new Date(a.date) > new Date(b.date) ? -1 : 1)
+                                    posts.sort((a: MyPost, b: MyPost) => new Date(a.date) > new Date(b.date) ? -1 : 1).slice(0, postsIndex)
                                         // Use 'reduce' to group the posts by month
                                         .reduce((acc: { [key: string]: MyPost[] }, post) => {
                                             if (isLoggedIn !== "admin" && post.isprivate) return acc

@@ -1,20 +1,20 @@
 {
     "symptoms": [
-{
-    "id": "7d8e37c4-408b-42f1-991d-0b73ee821e3a",
-    "label": "Vermoeid",
-    "description": "Ervaar vermoeidheid, een gevoel van uitputting of verminderde energie.",
-    "solution": "Neem voldoende rust en slaap. Overweeg een gezond dieet en regelmatige lichaamsbeweging. Neem een pauze van wat je aan het doen bent.",
-    "value": "vermoeidheid"
-},
-  {
+        {
+            "id": "7d8e37c4-408b-42f1-991d-0b73ee821e3a",
+            "label": "Vermoeid",
+            "description": "Ervaar vermoeidheid, een gevoel van uitputting of verminderde energie.",
+            "solution": "Neem voldoende rust en slaap. Overweeg een gezond dieet en regelmatige lichaamsbeweging. Neem een pauze van wat je aan het doen bent.",
+            "value": "vermoeidheid"
+        },
+        {
             "id": "5d1393c2-862c-4u46-9e64-9cb4e2c5578e",
-            "label": "Verdovend",
-            "description": "Een licht verdovend of gevoelloos gevoel",
+            "label": "Mierengekriebel",
+            "description": "Vaak beschreven alsof er mieren onder de huid lopen, voornamelijk in de armen of handen.",
             "solution": "Voer enkele stretches uit. Zie zeker dat je genoeg beweegd. Je kan ook best enkele oefeningen uitvoeren.",
-            "value": "verdovend"
-        },      
-{
+            "value": "mieren"
+        },
+        {
             "id": "4f4e6f16-9cd4-422d-88db-bc8ad779e057",
             "label": "Nek / Schouderpijn",
             "description": "Aanhoudende pijn in de nek en schouders, vaak uitstralend naar de borst.",
@@ -30,8 +30,8 @@
         },
         {
             "id": "e98a41cc-af3b-429b-b862-5b5645757b98",
-            "label":"Voos / raar gevoel",
-            "description": "Vaak beschreven alsof er mieren onder de huid lopen, voornamelijk in de armen of handen.",
+            "label": "Voos gevoel",
+            "description": "Een licht verdovend of gevoelloos gevoel",
             "solution": "Verhoog de bloedcirculatie door regelmatig je handen en armen te bewegen. Probeer de plekken te masseren met je handen of gebruik een massagebal om strakke weefsels te rekken. Oefen strekoefeningen uit voor de nek en schouders om spanning te verminderen.",
             "value": "voosheid"
         },

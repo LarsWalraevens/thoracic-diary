@@ -74,11 +74,11 @@
   width: 7px;
 }
 .dialog-scroll::-webkit-scrollbar-track {
-  @apply bg-zinc-900;
+  @apply dark:bg-zinc-900 bg-gray-400;
   border-radius:10px 100px 100px 10px;
 }
 .dialog-scroll::-webkit-scrollbar-thumb {
-  background: #888; 
+  @apply dark:bg-gray-400 bg-gray-800;
   border-radius:10px ;
 }
 .dialog-scroll::-webkit-scrollbar-thumb:hover {
