@@ -20,7 +20,7 @@ export function DateTimePicker(props: {
 }) {
     const { value, onChange } = props;
     return (
-        <Popover>
+        <Popover modal>
             <PopoverTrigger asChild>
                 <Button
                     variant={"outline"}
