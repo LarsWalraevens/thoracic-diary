@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
             // Extract properties from the parsed request body
             const { text, isprivate, type, tags } = requestBody;
 
-            const date = dayjs().locale('nl-be').format();
+            const date = dayjs(requestBody.date).locale('nl-be').format();
             // const date = dayjs(requestBody.date || new Date()).locale('nl-be').format('YYYY-MM-DD HH:mm:ss');
 
             // Use template literals directly
