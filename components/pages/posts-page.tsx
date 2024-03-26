@@ -97,66 +97,67 @@ export default function PostsPage() {
                                                             }
                                                             {
                                                                 post.tags && <div className="flex flex-row flex-wrap gap-1.5 mx-2">
-                                                                {
-                                                                    // Map through the tags of the current post and render badges with tooltips
-                                                                    post.tags && (post.tags as unknown as string).split(",").map((tag: string, i: number) => {
-                                                                        // Find tag data from 'symptoms' based on the tag value
-                                                                        const tagData = symptoms.symptoms.filter(symptom => symptom.value === tag).length > 0 ?
-                                                                            symptoms.symptoms.filter(symptom => symptom.value === tag)[0] :
-                                                                            symptoms.symptoms.filter(symptom => symptom.id === tag).length > 0 ?
-                                                                                symptoms.symptoms.filter(symptom => symptom.id === tag)[0] :
-                                                                                undefined;
-                                                                        // If tag data is not found, return null, otherwise render a tooltip with badge
-                                                                        if (!tagData) return null;
-                                                                        return <Fragment key={i}>
-                                                                            <Popover>
-                                                                                <PopoverTrigger className="max-md:hidden">
-                                                                                    <Badge variant="secondary" className="pointer" key={i}>
-                                                                                        {tagData?.label.toLowerCase() || tag}
-                                                                                    </Badge>
-                                                                                </PopoverTrigger>
-                                                                                <PopoverContent className="md:min-w-[400px]">
-                                                                                    <p className="font-bold  block text-lg mb-2">{tagData.label}</p>
-                                                                                    <p className="mb-3">{tagData.description}</p>
-                                                                                    {
-                                                                                        tagData.solution && <>
-                                                                                            <p className="font-bold mb-1">
-                                                                                                <HelpCircle size={18} className="inline-block mr-1" />
-                                                                                                Help:
-                                                                                            </p>
-                                                                                            <p >{tagData.solution}</p>
-                                                                                        </>
-                                                                                    }
+                                                                    {
+                                                                        // Map through the tags of the current post and render badges with tooltips
+                                                                        post.tags && (post.tags as unknown as string).split(",").map((tag: string, i: number) => {
+                                                                            // Find tag data from 'symptoms' based on the tag value
+                                                                            const tagData = symptoms.symptoms.filter(symptom => symptom.value === tag).length > 0 ?
+                                                                                symptoms.symptoms.filter(symptom => symptom.value === tag)[0] :
+                                                                                symptoms.symptoms.filter(symptom => symptom.id === tag).length > 0 ?
+                                                                                    symptoms.symptoms.filter(symptom => symptom.id === tag)[0] :
+                                                                                    undefined;
+                                                                            // If tag data is not found, return null, otherwise render a tooltip with badge
+                                                                            if (!tagData) return null;
+                                                                            return <Fragment key={i}>
+                                                                                <Popover>
+                                                                                    <PopoverTrigger className="max-md:hidden">
+                                                                                        <Badge variant="secondary" className="pointer" key={i}>
+                                                                                            {tagData?.label.toLowerCase() || tag}
+                                                                                        </Badge>
+                                                                                    </PopoverTrigger>
+                                                                                    <PopoverContent className="md:min-w-[400px]">
+                                                                                        <p className="font-bold  block text-lg mb-2">{tagData.label}</p>
+                                                                                        <p className="mb-3">{tagData.description}</p>
+                                                                                        {
+                                                                                            tagData.solution && <>
+                                                                                                <p className="font-bold mb-1">
+                                                                                                    <HelpCircle size={18} className="inline-block mr-1" />
+                                                                                                    Help:
+                                                                                                </p>
+                                                                                                <p >{tagData.solution}</p>
+                                                                                            </>
+                                                                                        }
 
-                                                                                </PopoverContent>
-                                                                            </Popover>
-                                                                            <Drawer>
-                                                                                <DrawerTrigger className="hidden max-md:inline-block">
-                                                                                    <Badge variant="secondary" className="pointer" key={i}>
-                                                                                        {tagData?.label.toLowerCase() || tag}
-                                                                                    </Badge>
-                                                                                </DrawerTrigger>
-                                                                                <DrawerContent className="pb-7">
-                                                                                    <DrawerHeader>
-                                                                                        <DrawerTitle className="text-2xl mb-2">{tagData.label || tag}</DrawerTitle>
-                                                                                        <DrawerDescription>{tagData.description}</DrawerDescription>
-                                                                                    </DrawerHeader>
+                                                                                    </PopoverContent>
+                                                                                </Popover>
+                                                                                <Drawer>
+                                                                                    <DrawerTrigger className="hidden max-md:inline-block">
+                                                                                        <Badge variant="secondary" className="pointer" key={i}>
+                                                                                            {tagData?.label.toLowerCase() || tag}
+                                                                                        </Badge>
+                                                                                    </DrawerTrigger>
+                                                                                    <DrawerContent className="pb-7">
+                                                                                        <DrawerHeader>
+                                                                                            <DrawerTitle className="text-2xl mb-2">{tagData.label || tag}</DrawerTitle>
+                                                                                            <DrawerDescription>{tagData.description}</DrawerDescription>
+                                                                                        </DrawerHeader>
 
-                                                                                    {
-                                                                                        tagData.solution && <div className="m-4">
-                                                                                            <p className="font-bold  mb-1">
-                                                                                                <HelpCircle size={18} className="inline-block mr-1" />
-                                                                                                Help:
-                                                                                            </p>
-                                                                                            <p className="dark:text-gray-300">{tagData.solution}</p>
-                                                                                        </div>
-                                                                                    }
-                                                                                </DrawerContent>
-                                                                            </Drawer>
-                                                                        </Fragment>
-                                                                    })
-                                                                }
-                                                            </div>
+                                                                                        {
+                                                                                            tagData.solution && <div className="m-4">
+                                                                                                <p className="font-bold  mb-1">
+                                                                                                    <HelpCircle size={18} className="inline-block mr-1" />
+                                                                                                    Help:
+                                                                                                </p>
+                                                                                                <p className="dark:text-gray-300">{tagData.solution}</p>
+                                                                                            </div>
+                                                                                        }
+                                                                                    </DrawerContent>
+                                                                                </Drawer>
+                                                                            </Fragment>
+                                                                        })
+                                                                    }
+                                                                </div>
+                                                            }
                                                         </div>
                                                     </Fragment>
                                                 )
