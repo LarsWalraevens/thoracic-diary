@@ -95,7 +95,8 @@ export default function PostsPage() {
                                                                     <Event className="mb-3" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} /> :
                                                                     <Post className="mb-3" onEdit={onEdit} onDelete={onDelete} key={i} {...post} isprivate={post.isprivate} />
                                                             }
-                                                            <div className="flex flex-row flex-wrap gap-1.5 mx-2">
+                                                            {
+                                                                post.tags && <div className="flex flex-row flex-wrap gap-1.5 mx-2">
                                                                 {
                                                                     // Map through the tags of the current post and render badges with tooltips
                                                                     post.tags && (post.tags as unknown as string).split(",").map((tag: string, i: number) => {
